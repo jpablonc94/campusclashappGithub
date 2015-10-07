@@ -59,14 +59,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
 <html lang="en">
 
 <head>
-    <script src="//www.parsecdn.com/js/parse-1.6.2.min.js">
-        Parse.initialize("msqDCo8i6Nv1GWYm8rP9GQc3GSK2ZxSmLRmrNP8l", "lyWSOksuLxpDfviQwkCAVTJmDn5AlVxdme4IEmBZ");
-        var TestObject = Parse.Object.extend("TestObject");
-        var testObject = new TestObject();
-        testObject.save({foo: "bar"}).then(function(object) {
-            alert("yay! it worked");
-        });
-    </script>
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -1,11 +1,61 @@
 <?php
 session_start();
-if(!isset($_SESSION["session_username"])) {
- header("location:login.php");
+?>
+ 
+<?php
+ 
+if(isset($_SESSION["session_username"])){
+//echo "<br><br><h1> Session is set </h1>"; // for testing purposes
+header("Location: welcome.php");
+} 
+
+if(isset($_POST["login"])){
+ 
+if(!empty($_POST['username']) && !empty($_POST['password'])) {
+ $username=$_POST['username'];
+ $password=$_POST['password'];
+
+ $server="localhost";
+ $database = "campusclash";
+ $db_pass = 'T7tmn892AB3';
+ $db_user = 'root';
+    
+ mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+ mysql_select_db($database) or die ("error2".mysql_error());
+ 
+$query =mysql_query("SELECT * FROM usertbl WHERE username='".$username."' AND password='".$password."'");
+ 
+$numrows=mysql_num_rows($query);
+ if($numrows!=0)
+ 
+{
+ while($row=mysql_fetch_assoc($query))
+ {
+ $dbusername=$row['username'];
+ $dbpassword=$row['password'];
+ }
+ 
+if($username == $dbusername && $password == $dbpassword)
+ 
+{
+ 
+ $_SESSION['session_username']=$username;
+ 
+/* Redirect browser */
+ header("Location: welcome.php");
+ }
+ } else {
+ 
+$message = "Nombre de usuario ó contraseña invalida!";
+ }
+ 
 } else {
+ $message = "Todos los campos son requeridos!";
+}
+}
 ?>
 
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,15 +66,19 @@ if(!isset($_SESSION["session_username"])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>Grayscale - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/shop-homepage.css" rel="stylesheet">
-    <!--<link href="eyey.css" rel="stylesheet">-->
-    <link href="css/myStyles.css" rel="stylesheet">
+    <!-- Custom CSS -->    
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="css/grayscale.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,7 +89,7 @@ if(!isset($_SESSION["session_username"])) {
 
 </head>
 
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -48,48 +102,127 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">CampusCLASH</a>
+                <a class="navbar-brand" href="#page-top">CampusCLASH</a>
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-		          <li>
-                        <a href="index.php">Home</a>
+                  <li>
+                        <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a href="about.php">About</a>
+                        <a class="page-scroll" href="#download">Log In</a>
                     </li>
                     <li>
-                        <a href="contact.php">Contact</a>
+                        <a class="page-scroll" href="#contact">Contact</a>
                     </li>                          
                     <!-- </div> -->
                 </ul>
-                <a href="logout.php" id="logout-jp">Log Out</a>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
 
-    <h1 class="h1-jp"> Bienvenido!</h1>
-    <br>
-    <a href="tienda.php" class="h1-jp"> TIENDA ONLINE </a>
-
-    <div class="container">
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; CampusCLASH</p>
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">Grayscale</h1>
+                        <p class="intro-text">A free, responsive, one page Bootstrap theme.<br>Created by Start Bootstrap.</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </header>
 
-    </div>
-    <!-- /.container -->
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About Grayscale</h2>
+                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
+                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+                    <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+                    <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+                    <form name="login" id="contactForm" action="index.php" method="post">
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Username</label>
+                                <input name="username" type="text" id="username" class="form-control" placeholder="User Name" required data-validation-required-message="Please enter your email address.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Password</label>
+                                <input <input name="password" type="password" id="password" class="form-control" placeholder="Password" required data-validation-required-message="Please enter your password.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <input type="submit" name="login" class="btn btn-default">
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact Start Bootstrap</h2>
+                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                    <li>
+                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; Your Website 2014</p>
+        </div>
+    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -97,11 +230,15 @@ if(!isset($_SESSION["session_username"])) {
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!--<script src="quepasa.js"></script>-->
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/grayscale.js"></script>
 
 </body>
 
 </html>
-<?php
-}
-?>
