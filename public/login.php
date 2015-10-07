@@ -16,7 +16,7 @@ if(!empty($_POST['username']) && !empty($_POST['password'])) {
  $password=$_POST['password'];
 
  $server="localhost";
- $database = "userlitdb";
+ $database = "campusclash";
  $db_pass = 'T7tmn892AB3';
  $db_user = 'root';
     

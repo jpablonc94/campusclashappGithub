@@ -1,0 +1,13 @@
+#logout-jp {	
+	text-decoration: none;
+	color: hsl(240, 0%, 75%);
+	float: right;
+    font-size: 20px;
+    margin: 8px 0px;
+    border: 1px outset hsl(240, 100%, 75%);
+    padding: 1px 6px;
+}
+
+#logout-jp:hover {
+	color: hsl(240, 100%, 100%);
+}

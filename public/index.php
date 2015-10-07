@@ -24,6 +24,7 @@ if(!isset($_SESSION["session_username"])) {
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
     <!--<link href="eyey.css" rel="stylesheet">-->
+    <link href="css/myStyles.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +53,7 @@ if(!isset($_SESSION["session_username"])) {
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-		    <li>
+		          <li>
                         <a href="index.php">Home</a>
                     </li>
                     <li>
@@ -60,10 +61,10 @@ if(!isset($_SESSION["session_username"])) {
                     </li>
                     <li>
                         <a href="contact.php">Contact</a>
-                    </li>
-                    <!--<div class="loginJP" id="ID-loginJP"> -->
+                    </li>                          
                     <!-- </div> -->
                 </ul>
+                <a href="logout.php" id="logout-jp">Log Out</a>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -101,18 +102,6 @@ if(!isset($_SESSION["session_username"])) {
 	</div>-->
 	
         <div class="row">
-
-            <div class="col-md-3">
-                <p class="lead">Secciones</p>
-                <div class="list-group">
-                    <a href="descuentos.php" class="list-group-item">Descuentos</a>
-                    <a href="accesorios.php" class="list-group-item">Accesorios</a>
-                    <a href="salidas.php" class="list-group-item">Salidas</a>
-                    <a href="download.php" class="list-group-item">Descargar el PDF</a>
-                </div>
-            </div>
-
-            <div class="col-md-9">
 
                 <div class="row carousel-holder">
 
@@ -279,10 +268,6 @@ if(!isset($_SESSION["session_username"])) {
                         </div>
                     </div>
                 </div>
-
-            </div>
-
-        </div>
 
     </div>
     <!-- /.container -->
