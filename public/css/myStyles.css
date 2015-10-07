@@ -11,3 +11,24 @@
 #logout-jp:hover {
 	color: hsl(240, 100%, 100%);
 }
+
+#centrado-jp {
+	float: center;
+	margin: 50px 200px 50px 150px;
+/*	border: 1px outset hsl(240, 100%, 75%); */
+}
+
+.header-jp {
+	text-align: center;
+}
+
+.h1-jp {
+	font-size: 60px;
+	margin: 0px 200px;
+	border-style: none none solid none;*/
+	padding: 0px 0px 3px 0px;
+}
+
+.subheader-jp {
+	font-size: 20px;
+}
