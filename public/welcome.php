@@ -90,13 +90,17 @@ if(!isset($_SESSION["session_username"])) {
                         <h1>Welcome!!</h1>
                         <hr class="small">
                         <span class="subheading">Nice to see you!</span>
+                        <br>
+                        <a href="#services" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
     <!-- Services Section -->
-    <section id="services">
+    <section id="services" style="padding-top:100px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -143,7 +147,7 @@ if(!isset($_SESSION["session_username"])) {
 
     
     <!-- About Section -->
-    <section id="about">
+    <section id="about" style="padding-top:100px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -239,7 +243,7 @@ if(!isset($_SESSION["session_username"])) {
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" style="padding:100px 0px 50px 0px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

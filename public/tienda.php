@@ -84,7 +84,7 @@ if(!isset($_SESSION["session_username"])) {
         </div>
         <!-- /.container -->
     </nav>
-
+    
     <header class="intro-header" style="background-image: url('img/banner-bg.jpg')">
         <div class="container">
             <div class="row">
@@ -93,6 +93,9 @@ if(!isset($_SESSION["session_username"])) {
                         <h1>Tienda Online</h1>
                         <hr class="small">
                         <span class="subheading">Canjea aquí tus puntos!</span>
+                        <a href="#productos" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -100,6 +103,7 @@ if(!isset($_SESSION["session_username"])) {
     </header>
     
     <!-- Portfolio Grid Section -->
+    <section id="productos"></section>
     <section id="portfolio" class="bg-light-gray">
         <div class="container">            
             <div class="row">
@@ -108,7 +112,6 @@ if(!isset($_SESSION["session_username"])) {
                     <h3 class="section-subheading text-muted">Elige el que más te guste!</h3> 
                 </div>
             </div>
-            <br>
             <br>
             <div class="row carousel-holder">
 
