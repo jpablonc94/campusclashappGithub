@@ -1,11 +1,11 @@
 #logout-jp {	
 	text-decoration: none;
 	color: hsl(240, 0%, 75%);
-	float: right;
-    font-size: 20px;
-    margin: 8px 0px;
+	/*float: right;
+    font-size: 20px;*/
+    margin: 12px 6px;
     border: 1px outset hsl(240, 100%, 75%);
-    padding: 1px 6px;
+    padding: 1px 3px;
 }
 
 #logout-jp:hover {
@@ -17,18 +17,27 @@
 	margin: 50px 200px 50px 150px;
 /*	border: 1px outset hsl(240, 100%, 75%); */
 }
-
-.header-jp {
-	text-align: center;
+.points-jp {
+	margin: 0px 0px 15px 0px;
 }
 
-.h1-jp {
-	font-size: 60px;
-	margin: 0px 200px;
-	border-style: none none solid none;*/
-	padding: 0px 0px 3px 0px;
+.ocultar-opciones li ul {
+	display:none;
+	position:absolute;
+	min-width:140px;
 }
 
-.subheader-jp {
-	font-size: 20px;
+.ocultar-opciones li:hover > ul{
+	display:block;
+	background-color:black;
 }
+
+.ocultar-opciones li:hover > ul li a{
+	text-decoration: none;
+	color:hsl(240, 100%, 100%);
+}
+
+.ocultar-opciones li:hover > ul li a:hover{
+	text-decoration: underline;
+}
+

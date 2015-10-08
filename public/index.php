@@ -66,7 +66,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>CampusClash - Talentum Startup</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -74,6 +74,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
     <!-- Custom CSS -->    
     <link href="css/clean-blog.min.css" rel="stylesheet">
     <link href="css/grayscale.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -102,7 +103,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-top">CampusCLASH</a>
+                <a class="navbar-brand page-scroll" href="#page-top">CampusCLASH</a>
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -111,7 +112,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Log In</a>
+                        <a class="page-scroll" href="#login">Log In</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -130,8 +131,8 @@ $message = "Nombre de usuario ó contraseña invalida!";
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">Grayscale</h1>
-                        <p class="intro-text">A free, responsive, one page Bootstrap theme.<br>Created by Start Bootstrap.</p>
+                        <h1 class="brand-heading">CampusClash</h1>
+                        <p class="intro-text">Participa, Esfuérzate, Gana</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -145,23 +146,22 @@ $message = "Nombre de usuario ó contraseña invalida!";
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Grayscale</h2>
-                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
-                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+                <h2>About CampusClash</h2>
+                <p>La idea es hacer más lúdico un entorno meramente educativo, en este caso, el aula virtual de la Universidad Politécnica de Cartagena.</p>
+                <p>A este proceso se le llama gamificación y su principal objetivo es motivar a los usuarios a que participen dentro del curso.</p>
+                <p>Esta plataforma hará posible este objetivo, proporcionando un sitema de canjeo de puntos, obtenidos en el aula virtual, por descuentos y otros premios.</p>
             </div>
         </div>
     </section>
 
-    <!-- Download Section -->
-    <section id="download" class="content-section text-center">
-        <div class="download-section">
+    <!-- Login Section -->
+    <section id="login" class="content-section text-center">
+        <div class="login-section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-                    <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-                    <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+                    <h2 style="color:black">LOG IN</h2>
+                    <p style="color:hsl(240, 100%, 70%);">Deberás haberte registrado previamente a través del aula virtual</p>
                     <form name="login" id="contactForm" action="index.php" method="post">
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -181,7 +181,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
                         <div id="success"></div>
                         <div class="row">
                             <div class="form-group col-xs-12">
-                                <input type="submit" name="login" class="btn btn-default">
+                                <button type="submit" name="login" class="btn btn-default">Entrar</button>
                             </div>
                         </div>
                     </form>
@@ -195,9 +195,9 @@ $message = "Nombre de usuario ó contraseña invalida!";
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
-                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                <h2>Contact</h2>
+                <p>Si quieres saber más sobre CampusClash, no dudes en enviar un email a la siguiente dirección:</p>
+                <p><a href="mailto:feedback@startbootstrap.com">juan.pablo.nc@campusclash.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
@@ -214,13 +214,10 @@ $message = "Nombre de usuario ó contraseña invalida!";
         </div>
     </section>
 
-    <!-- Map Section -->
-    <div id="map"></div>
-
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Your Website 2014</p>
+            <p style="float:left">Copyright &copy; CampusClash</p>
         </div>
     </footer>
 
