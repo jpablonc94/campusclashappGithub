@@ -60,8 +60,8 @@ if(!isset($_SESSION["session_username"])) {
                         <a class="page-scroll" href="#services">Secciones</a>
                         <ul>
                             <li><a href="tienda.php">Tienda</a></li>
-                            <li><a href="#">Panel de anuncios</a></li>
-                            <li><a href="#">Gestión de apuntes</a></li>
+                            <li><a href="#">Tablón de anuncios</a></li>
+                            <li><a href="#">Clasificación</a></li>
                         </ul>
                     </li>
                     <li>
@@ -138,10 +138,13 @@ if(!isset($_SESSION["session_username"])) {
                         <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </a>
                     </span>
-                    <h4 class="service-heading">Apuntes</h4>
-                    <p class="text-muted"> Si con lo aprendido en clase no es suficiente, deberías echarle un vistazo a este último apartado</p>
+                    <h4 class="service-heading">Clasificación</h4>
+                    <p class="text-muted"> En este apartado podrás ver tu posición con respecto al resto de estudiantes! </p>
                 </div>
             </div>
+            <a href="#about" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
         </div>
     </section>
 
@@ -153,14 +156,64 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">About</h2>
                     <h3 class="section-subheading text-muted">Sobre CampusClash</h3>
+                    <a href="#about-1" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                         <i class="fa fa-angle-double-down animated"></i>
+                    </a>
                 </div>               
             </div>
         </div>
     <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-4 col-sm-6" style="margin:0px 0px 0px 80px;">
+                    <hr id="about-1" class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Qué es CampusClash?</h2>
+                    <p class="lead">La empresa pretende hacer el día a día del Aula Virtual, más interactivo. Motivando a los alumnos a participar y hacer un correcto uso de la plataforma Moodle</p>
+                    <p class="lead">Si estás en esta página es porque ya te has registrado en el aula virtual. Como habrás podido observar, en el bloque CampusClash dentro de tus asignaturas, se te ha asignado una puntuación. Esta puntuación irá incrementando conforme participes en las distintas tareas dentro del aula. Dichas tareas serán entregables, prácticas, tests, foros...</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="img/phones.png" style="margin:250px 0px 0px 0px;">
+                </div>
+            </div>
+            <a href="#about-2" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                         <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>
+        <!-- /.container -->
+    </div>
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6" style="margin:0px 40px 0px 0px;">
+                    <hr id="about-2" class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Qué hacer con esos puntos?</h2>
+                    <p class="lead">El objetivo principal de esta página es que el alumno pueda canjear los puntos obtenidos en el aula virtual por premios, como pueden ser descuentos y ofertas exclusivas.</p>
+                </div>
+                <div class="col-lg-4 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="img/dog.png" style="margin:80px 0px 0px 100px;">
+                </div>
+            </div>
+            <a href="#about-3" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                         <i class="fa fa-angle-double-down animated"></i>
+            </a>
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+        
+    <div class="content-section-a">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-6" style="margin:0px 0px 0px 100px;">
-                    <hr class="section-heading-spacer">
+                    <hr id="about-3" class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Creador: J.P.N.C</h2>
                     <p class="lead">Mi nombre es Juan Pablo Navarro Castillo y soy estudiante de Teleco (ETSIT) en la Universidad Politécnica de Cartagena.</p>
@@ -170,7 +223,9 @@ if(!isset($_SESSION["session_username"])) {
                     <img class="img-responsive" src="img/yo.jpg" style="margin:80px 0px 0px 50px;">
                 </div>
             </div>
-
+            <a href="#about-4" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                         <i class="fa fa-angle-double-down animated"></i>
+            </a>
         </div>
         <!-- /.container -->
     </div>
@@ -182,7 +237,7 @@ if(!isset($_SESSION["session_username"])) {
 
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6" style="margin:0px 40px 0px 0px;">
-                    <hr class="section-heading-spacer">
+                    <hr id="about-4" class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Talentum Startup</h2>
                     <p class="lead">Este proyecto ha sido llevado cabo gracias a la <a href="http://www.talentumstartups.com/" style="color:blue;text-decoration:none;">Red de Cátedras Talentum</a>, de la compañía Telefónica. Una iniciativa que promueve el espiritu emprendedor entre los estudiantes que quieren desarrollar una empresa propia.</p>
@@ -191,55 +246,15 @@ if(!isset($_SESSION["session_username"])) {
                     <img class="img-responsive" src="img/talentum.png" style="margin:30px 0px 0px 20px;">
                 </div>
             </div>
-
+            <a href="#contact" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                <i class="fa fa-angle-double-down animated"></i>
+            </a>
         </div>
         <!-- /.container -->
 
     </div>
     <!-- /.content-section-b -->
 
-    <div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-4 col-sm-6" style="margin:0px 0px 0px 80px;">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Qué es CampusClash?</h2>
-                    <p class="lead">La empresa pretende hacer el día a día del Aula Virtual, más interactivo. Motivando a los alumnos a participar y hacer un correcto uso de la plataforma Moodle</p>
-                    <p class="lead">Si estás en esta página es porque ya te has registrado en el aula virtual. Como habrás podido observar, en el bloque CampusClash dentro de tus asignaturas, se te ha asignado una puntuación. Esta puntuación irá incrementando conforme participes en las distintas tareas dentro del aula. Dichas tareas serán entregables, prácticas, tests, foros...</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" style="margin:250px 0px 0px 0px;">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-    </div>
-
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6" style="margin:0px 40px 0px 0px;">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Qué hacer con esos puntos?</h2>
-                    <p class="lead">El objetivo principal de esta página es que el alumno pueda canjear los puntos obtenidos en el aula virtual por premios, como pueden ser descuentos y ofertas exclusivas.</p>
-                </div>
-                <div class="col-lg-4 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/dog.png" style="margin:80px 0px 0px 100px;">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
     </section>
 
     <!-- Contact Section -->

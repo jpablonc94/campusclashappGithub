@@ -74,6 +74,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
     <!-- Custom CSS -->    
     <link href="css/clean-blog.min.css" rel="stylesheet">
     <link href="css/grayscale.css" rel="stylesheet">
+    <link href="css/myStyles.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -107,7 +108,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
                   <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
@@ -152,6 +153,9 @@ $message = "Nombre de usuario ó contraseña invalida!";
                 <p>Esta plataforma hará posible este objetivo, proporcionando un sitema de canjeo de puntos, obtenidos en el aula virtual, por descuentos y otros premios.</p>
             </div>
         </div>
+        <a href="#login" class="btn btn-circle page-scroll">
+            <i class="fa fa-angle-double-down animated"></i>
+        </a>
     </section>
 
     <!-- Login Section -->
@@ -187,6 +191,9 @@ $message = "Nombre de usuario ó contraseña invalida!";
                     </form>
                     </div>
                 </div>
+                <a href="#contact" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                    <i class="fa fa-angle-double-down animated"></i>
+                </a>
             </div>
         </div>
     </section>
