@@ -4,62 +4,65 @@ session_start();
  
 <?php
  
-if(isset($_SESSION["session_username"])){
-//echo "<br><br><h1> Session is set </h1>"; // for testing purposes
-header("Location: welcome.php");
+if(isset($_SESSION["session_email"])){
+    //echo "<br><br><h1> Session is set </h1>"; // for testing purposes
+    header("Location: welcome.php");
 } 
 
-if(isset($_POST["login"])){
- 
-if(!empty($_POST['username']) && !empty($_POST['password'])) {
- $username=$_POST['username'];
- $password=$_POST['password'];
+if(isset($_POST["login"])){ 
+    if(!empty($_POST['password']) && !empty($_POST['email'])) {
+        $password=$_POST['password'];
+        $email=$_POST['email'];
 
- $server="localhost";
- $database = "campusclash";
- $db_pass = 'T7tmn892AB3';
- $db_user = 'root';
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+            $server="localhost";
+            $database = "campusclash";
+            $db_pass = 'T7tmn892AB3';
+            $db_user = 'root';
     
- mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
- mysql_select_db($database) or die ("error2".mysql_error());
+            mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+            mysql_select_db($database) or die ("error2".mysql_error());
  
-$query =mysql_query("SELECT * FROM usertbl WHERE username='".$username."' AND password='".$password."'");
+            $query =mysql_query("SELECT * FROM usertbl WHERE email='".$email."' AND password='".$password."'");
  
-$numrows=mysql_num_rows($query);
- if($numrows!=0)
+            $numrows=mysql_num_rows($query);
+
+            if($numrows!=0){
+                while($row=mysql_fetch_assoc($query)){
+                    $dbusername=$row['username'];
+                    $dbpassword=$row['password'];
+                    $dbemail=$row['email'];
+                    $dbfullname=$row['full_name'];
+                    $dbpoints=$row['points'];
+                }
  
-{
- while($row=mysql_fetch_assoc($query))
- {
- $dbusername=$row['username'];
- $dbpassword=$row['password'];
- }
+                if($password == $dbpassword && $email == $dbemail){ 
+                    $_SESSION['session_username']=$dbusername;
+                    $_SESSION['session_email']=$dbemail;
+                    $_SESSION['session_fullname']=$dbfullname;
+                    $_SESSION['session_points']=$dbpoints;
  
-if($username == $dbusername && $password == $dbpassword)
- 
-{
- 
- $_SESSION['session_username']=$username;
- 
-/* Redirect browser */
- header("Location: welcome.php");
- }
- } else {
- 
-$message = "Nombre de usuario ó contraseña invalida!";
- }
- 
+                    /* Redirect browser */
+                    header("Location: welcome.php");
+                }
+
+            } else { 
+                $message = "Nombre de usuario ó contraseña invalida!";
+            }            
+        }
+    } else {
+        $message = "Todos los campos son requeridos!";
+    }
 } else {
- $message = "Todos los campos son requeridos!";
-}
+    $message = "";
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -166,11 +169,11 @@ $message = "Nombre de usuario ó contraseña invalida!";
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <h2 style="color:black">LOG IN</h2>
                     <p style="color:hsl(240, 100%, 70%);">Deberás haberte registrado previamente a través del aula virtual</p>
-                    <form name="login" id="contactForm" action="index.php" method="post">
+                    <form name="login" id="contactForm" action="index.php" method="post">                       
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Username</label>
-                                <input name="username" type="text" id="username" class="form-control" placeholder="User Name" required data-validation-required-message="Please enter your email address.">
+                                <label>Email</label>
+                                <input name="email" type="text" id="email" class="form-control" placeholder="Email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -181,8 +184,7 @@ $message = "Nombre de usuario ó contraseña invalida!";
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <br>
-                        <div id="success"></div>
+                        <p style="color:black; margin:10px;"><?php echo "$message"; ?> </p>                      
                         <div class="row">
                             <div class="form-group col-xs-12">
                                 <button type="submit" name="login" class="btn btn-default">Entrar</button>
@@ -191,8 +193,8 @@ $message = "Nombre de usuario ó contraseña invalida!";
                     </form>
                     </div>
                 </div>
-                <a href="#contact" class="row btn btn-circle page-scroll">
-                    <i class="fa fa-angle-double-down animated" style="color:black"></i>
+                <a href="#contact" class="row btn btn-circle page-scroll" style="margin:0px;">
+                    <i class="fa fa-angle-double-down animated" style="color:black;"></i>
                 </a>
             </div>
         </div>

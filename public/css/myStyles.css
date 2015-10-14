@@ -12,6 +12,27 @@
 	color: hsl(240, 100%, 100%);
 }
 
+#usuario-jp {    
+    text-decoration: none;
+    color: white;
+}
+
+#usuario-jp:hover {
+    text-decoration: none;
+    color: hsl(240, 100%, 75%);
+}
+
+table, th, td {
+    border: 1px none black;
+    border-collapse: collapse;
+    margin: 35px 10px;
+}
+
+th, td {
+    padding: 15px;
+    font-size: 20px;
+}
+
 #centrado-jp {
 	float: center;
 	margin: 50px 200px 50px 150px;

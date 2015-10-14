@@ -1,12 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION["session_username"])) {
+if(!isset($_SESSION["session_email"])) {
  header("location:index.php");
 } else {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -52,20 +52,22 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="index.php">CampusCLASH</a>
+                <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
+                <p class="navbar-brand" style="color:white; margin:0px 100px 0px 50px; border: 1px outset gray; padding: 13px 10px;">puntos: <a href="profile.php" id="usuario-jp"><? echo $_SESSION['session_points']; ?></a></p>
+
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse ocultar-opciones" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-		            <li>
-                        <a href="welcome.php#page-top">Home</a>
-                    </li>
                     <li>
-                        <a class="page-scroll" href="#services">Secciones</a>
-                        <ul>
-                            <li><a class="page-scroll" href="#page-top">Tienda</a></li>
-                            <li><a href="#">Panel de anuncios</a></li>
-                            <li><a href="#">Gestión de apuntes</a></li>
+                        <a class="page-scroll" href="welcome.php#page-top">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Secciones <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="tienda.php">Tienda</a></li>
+                            <li><a href="#">Tablón de anuncios</a></li>
+                            <li><a href="#">Clasificación</a></li>
                         </ul>
                     </li>
                     <li>
@@ -74,9 +76,21 @@ if(!isset($_SESSION["session_username"])) {
                     <li>
                         <a class="page-scroll" href="welcome.php#contact">Contact</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="logout.php" id="logout-jp">Log Out</a>
-                    </li>                          
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $_SESSION['session_fullname']; ?><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="profile.php"><i class="fa fa-fw fa-user"></i>Profile</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>                       
                     <!-- </div> -->
                 </ul>
             </div>
