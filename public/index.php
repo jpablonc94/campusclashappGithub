@@ -191,8 +191,8 @@ $message = "Nombre de usuario ó contraseña invalida!";
                     </form>
                     </div>
                 </div>
-                <a href="#contact" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                    <i class="fa fa-angle-double-down animated"></i>
+                <a href="#contact" class="row btn btn-circle page-scroll">
+                    <i class="fa fa-angle-double-down animated" style="color:black"></i>
                 </a>
             </div>
         </div>

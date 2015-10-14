@@ -77,14 +77,11 @@
     -moz-animation-timing-function: linear;
 }
 
-<<<<<<< HEAD
 .centrado-circulos-jp{
-    margin: 0px 535px;
+    margin: 0px 555px;
     color:black;
 }
 
-=======
->>>>>>> 5d7c4e3dcd1bffd8a9dd2223d7227103155ec74d
 @-webkit-keyframes pulse {    
     0% {
         -webkit-transform: scale(1);

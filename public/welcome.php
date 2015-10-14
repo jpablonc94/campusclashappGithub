@@ -142,8 +142,8 @@ if(!isset($_SESSION["session_username"])) {
                     <p class="text-muted"> En este apartado podrás ver tu posición con respecto al resto de estudiantes! </p>
                 </div>
             </div>
-            <a href="#about" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                <i class="fa fa-angle-double-down animated"></i>
+            <a href="#about" class="row btn btn-circle page-scroll">
+                <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
             </a>
         </div>
     </section>
@@ -156,8 +156,8 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">About</h2>
                     <h3 class="section-subheading text-muted">Sobre CampusClash</h3>
-                    <a href="#about-1" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                         <i class="fa fa-angle-double-down animated"></i>
+                    <a href="#about-1" class="row btn btn-circle page-scroll">
+                         <i class="fa fa-angle-double-down animated" style="color:black"></i>
                     </a>
                 </div>               
             </div>
@@ -178,8 +178,8 @@ if(!isset($_SESSION["session_username"])) {
                     <img class="img-responsive" src="img/phones.png" style="margin:250px 0px 0px 0px;">
                 </div>
             </div>
-            <a href="#about-2" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                         <i class="fa fa-angle-double-down animated"></i>
+            <a href="#about-2" class="row btn btn-circle page-scroll">
+                         <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
             </a>
         </div>
         <!-- /.container -->
@@ -200,8 +200,8 @@ if(!isset($_SESSION["session_username"])) {
                     <img class="img-responsive" src="img/dog.png" style="margin:80px 0px 0px 100px;">
                 </div>
             </div>
-            <a href="#about-3" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                         <i class="fa fa-angle-double-down animated"></i>
+            <a href="#about-3" class="row btn btn-circle page-scroll">
+                         <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
             </a>
         </div>
         <!-- /.container -->
@@ -223,8 +223,8 @@ if(!isset($_SESSION["session_username"])) {
                     <img class="img-responsive" src="img/yo.jpg" style="margin:80px 0px 0px 50px;">
                 </div>
             </div>
-            <a href="#about-4" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                         <i class="fa fa-angle-double-down animated"></i>
+            <a href="#about-4" class="row btn btn-circle page-scroll">
+                         <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
             </a>
         </div>
         <!-- /.container -->
@@ -246,8 +246,8 @@ if(!isset($_SESSION["session_username"])) {
                     <img class="img-responsive" src="img/talentum.png" style="margin:30px 0px 0px 20px;">
                 </div>
             </div>
-            <a href="#contact" class="row btn btn-circle page-scroll centrado-circulos-jp">
-                <i class="fa fa-angle-double-down animated"></i>
+            <a href="#contact" class="row btn btn-circle page-scroll">
+                <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
             </a>
         </div>
         <!-- /.container -->
