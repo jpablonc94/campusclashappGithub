@@ -1,12 +1,22 @@
 <?php
 session_start();
+require_once 'lib.php';
 ?>
 <?php
-if(!isset($_SESSION["session_email"])) {
- 
+if(!isset($_SESSION["session_email"])) { 
     header("location:index.php");
-
-} else {        
+} else {   
+ 
+    if(!empty($_POST)) {
+        if (subir_fichero('userimg','imagen')){
+            $message = 'Archivo subido';
+        } else {
+            $message = 'Archivo no aceptado';
+        }
+    } else {
+        $message = '';
+    }
+      
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,8 +66,15 @@ if(!isset($_SESSION["session_email"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 100px 0px 50px; border: 1px outset gray; padding: 13px 10px;">puntos: <a href="profile.php" id="usuario-jp"><? echo $_SESSION['session_points']; ?></a></p>
-
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 150px; border: 1px outset gray; padding: 13px 10px;">
+                    puntos: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            $row = obtener_datos_from_db($_SESSION['session_username']);
+                            echo $row['points']; 
+                        ?>
+                    </a>
+                </p>
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -132,7 +149,13 @@ if(!isset($_SESSION["session_email"])) {
 
                 <div class="row">
                     <div class="col-lg-3" style="margin:0px 0px 500px 0px;">
-                        <img class="img-responsive" src="img/yo.jpg" style="margin:0px;">                    
+                        <img class="img-responsive" src="obtenerfotografia.php" style="margin:0px;">
+                        <p style="color:black; margin:10px;"><?php echo "$message"; ?> </p> 
+                        <form name="login" id="contactForm" enctype="multipart/form-data" action="almacenar_imagen.php" method="post">
+                            <label for="imagen">Cambiar Imagen:</label>                       
+                            <input id="imagen" type="file" name="imagen">
+                            <input type="submit" name="subir"> 
+                        </form>                    
                     </div>
                     <div class="col-lg-6 col-lg-offset-0">
                          <table style="width:100%">
@@ -152,7 +175,7 @@ if(!isset($_SESSION["session_email"])) {
                                 <td>Puntos: </td>
                                 <td><b><?php echo $_SESSION['session_points'];?></b></td>
                             </tr>
-                        </table> 
+                        </table>
                     </div>
                 </div>
                 <!-- /.row -->

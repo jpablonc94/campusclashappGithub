@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'lib.php';
 ?>
 <?php
 if(!isset($_SESSION["session_email"])) {
@@ -53,7 +54,15 @@ if(!isset($_SESSION["session_email"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 100px 0px 50px; border: 1px outset gray; padding: 13px 10px;">puntos: <a href="profile.php" id="usuario-jp"><? echo $_SESSION['session_points']; ?></a></p>
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 150px; border: 1px outset gray; padding: 13px 10px;">
+                    puntos: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            $row = obtener_datos_from_db($_SESSION['session_username']);
+                            echo $row['points']; 
+                        ?>
+                    </a>
+                </p>
 
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->

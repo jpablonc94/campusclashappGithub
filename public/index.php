@@ -173,7 +173,7 @@ if(isset($_POST["login"])){
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Email</label>
-                                <input name="email" type="text" id="email" class="form-control" placeholder="Email" required data-validation-required-message="Please enter your email address.">
+                                <input name="email" type="email" id="email" class="form-control" placeholder="Email" required data-validation-required-message="Please enter your email address.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
