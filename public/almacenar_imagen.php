@@ -1,6 +1,8 @@
 <?php
 session_start();
 // Conexion a la base de datos
+$_SESSION['session_image_loaded_try'] = true;
+
 $server="localhost";
 $database = "campusclash";
 $db_pass = 'T7tmn892AB3';
@@ -46,17 +48,17 @@ else
  
         if ($resultado)
         {
-            echo "El archivo ha sido copiado exitosamente.";
+            $_SESSION['session_image_loaded']="La imagen ha sido reemplazada exitosamente.";
         }
         else
         {
-            echo "Ocurrió algun error al copiar el archivo.";
+            $_SESSION['session_image_loaded']="Ocurrió algun error durante el reemplazo del archivo.";
         }
     }
     else
     {
-        echo "Formato de archivo no permitido o excede el tamaño límite de $limite_kb Kbytes.";
+        $_SESSION['session_image_loaded']="Formato de archivo no permitido o excede el tamaño límite de $limite_kb Kbytes.";
     }
 }
-header("location:profile.php");
+header("location:settings.php");
 ?>

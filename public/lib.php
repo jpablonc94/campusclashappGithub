@@ -65,4 +65,72 @@ function obtener_datos_from_db($username){
                );
     }
 }
+
+function cambiar_fullname($fullname, $newfullname){
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $resultado = mysql_query("UPDATE `usertbl` SET `full_name`= '$newfullname' WHERE `full_name`= '$fullname'");
+    if($resultado){
+        return "Nombre cambiado correctamente.";
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }
+}
+
+function cambiar_email($email, $newemail){
+    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $nuevo_email=mysql_query("SELECT `email` FROM `usertbl` WHERE `email`='$newemail'");
+        if(mysql_num_rows($nuevo_email)>0) {
+            return "Email ya existente, pruebe otro.";
+        } else {
+            $server="localhost";
+            $database = "campusclash";
+            $db_pass = 'T7tmn892AB3';
+            $db_user = 'root';
+    
+            mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+            mysql_select_db($database) or die ("error2".mysql_error());
+
+            $resultado = mysql_query("UPDATE `usertbl` SET `email`= '$newemail' WHERE `email`= '$email'");
+            if($resultado){
+                return "Email cambiado correctamente.";
+            } else {
+                return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+            }
+        }
+    } else {
+        return "El formato del email no es correcto, debe seguir la siguiente estructura: example@example.example";
+    }
+}
+
+function cambiar_username($username, $newusername){
+    $nuevo_usuario=mysql_query("SELECT `username` FROM `usertbl` WHERE `username`='$newusername'");
+    if(mysql_num_rows($nuevo_usuario)>0){
+        return "Nombre de usuario ya existente, pruebe otro.";
+    } else {
+        $server="localhost";
+        $database = "campusclash";
+        $db_pass = 'T7tmn892AB3';
+        $db_user = 'root';
+    
+        mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+        mysql_select_db($database) or die ("error2".mysql_error());
+
+        $resultado = mysql_query("UPDATE `usertbl` SET `username`= '$newusername' WHERE `username`= '$username'");
+        if($resultado){
+            $_SESSION["session_username"] = $newusername;
+            return "Nombre de usuario cambiado correctamente.";
+        } else {
+            return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+        }
+    }
+}
+
+
 ?>

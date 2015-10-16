@@ -6,7 +6,44 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-      
+/*Comprobación de que es una imagen correcta
+    if(!empty($_POST)) {
+        if (subir_fichero('userimg','imagen')){
+            $message = cambiar_imagen();            
+        } else {
+            $message = 'Archivo no aceptado';
+        }
+    } else {
+        $message = '';
+    } 
+*/
+    $row = obtener_datos_from_db($_SESSION['session_username']);
+
+    $message1 = "";
+    $message2 = "";
+    $message3 = "";
+    $message4 = ""; 
+
+    
+    if($_SESSION['session_image_loaded_try']){
+        $message1 = $_SESSION['session_image_loaded'];
+        $_SESSION['session_image_loaded_try']=false;
+    }
+
+    if(isset($_POST["cambiar"])){ 
+        if(!empty($_POST["fullname"])) {
+            $message2 = cambiar_fullname ($row['fullname'], $_POST["fullname"]);
+        } else {
+            if(!empty($_POST["email"])) {
+                $message3 = cambiar_email ($row['email'], $_POST["email"]);
+            } else {
+                if(!empty($_POST["username"])) {
+                    $message4 = cambiar_username ($row['username'], $_POST["username"]);
+                } 
+            }       
+        }          
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -125,20 +162,19 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>                    
                 </ul>
-            </div> 
+            </div>
             <!-- /.navbar-collapse -->
         </nav>
-        <br>
-        <br>
         <br>
         <div id="page-wrapper" style="border: 10px #A5A5A5; border-style: double none double double;">
 
             <div class="container-fluid">
+
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
-                            Perfil de usuario
+                            Ajustes
                         </h1> 
 
                     </div>
@@ -146,33 +182,67 @@ if(!isset($_SESSION["session_username"])) {
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
-                        <img class="img-responsive" src="obtenerfotografia.php" style="margin:0px;">                  
+                    <div class="col-lg-3" style="margin:0px;">                        
+                        <form name="cambiarimg" enctype="multipart/form-data" action="almacenar_imagen.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar Imagen:</h4>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input id="imagen" type="file" name="imagen"></td>
+                                    <td><button name="cambiarimg" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                           
+                        </form>                     
                     </div>
-                    <?php $row = obtener_datos_from_db($_SESSION['session_username']);?>
-                    <div class="col-lg-5 col-lg-offset-0">
-                         <table style="width:150%;">
-                            <tr>
-                                <td>Nombre y apellidos: </td>
-                                <td><b><?php echo $row['fullname'];?></b></td>
-                            </tr>
-                            <tr>
-                                <td>Nombre de usuario: </td>
-                                <td><b><?php echo $row['username'];?></b></td>
-                            </tr>
-                            <tr>
-                                <td>Email: </td>
-                                <td><b><?php echo $row['email'];?></b></td>
-                            </tr>
-                            <tr>
-                                <td>Puntos: </td>
-                                <td><b><?php echo $row['points'];?></b></td>
-                            </tr>
-                        </table>
-                    </div>
+                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message1"; ?></p>
                 </div>
-                <!-- /.row -->
-
+                 
+                <?php $row = obtener_datos_from_db($_SESSION['session_username']);?>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="settings.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar nombre completo:</h4>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="fullname" type="text" class="form-control" placeholder="Actualmente: <?php echo $row['fullname'];?> *" id="fullname" required data-validation-required-message="Please enter your fullname."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                            
+                        </form>                    
+                    </div>
+                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message2"; ?></p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="settings.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar email:</h4>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="email" type="email" class="form-control" placeholder="Actualmente: <?php echo $row['email'];?> *" id="email" required data-validation-required-message="Please enter your email address."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                               
+                        </form>                    
+                    </div>
+                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message3"; ?></p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="settings.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar nombre de usuario:</h4>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="username" type="text" class="form-control" placeholder="Actualmente: <?php echo $row['username'];?> *" id="username" required data-validation-required-message="Please enter your username."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                            
+                        </form>                    
+                    </div>
+                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message4"; ?></p>
+                </div>            
             </div>
             <!-- /.container-fluid -->
 

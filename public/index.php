@@ -4,7 +4,7 @@ session_start();
  
 <?php
  
-if(isset($_SESSION["session_email"])){
+if(isset($_SESSION["session_username"])){
     //echo "<br><br><h1> Session is set </h1>"; // for testing purposes
     header("Location: welcome.php");
 } 
@@ -38,10 +38,10 @@ if(isset($_POST["login"])){
                 }
  
                 if($password == $dbpassword && $email == $dbemail){ 
-                    $_SESSION['session_username']=$dbusername;
-                    $_SESSION['session_email']=$dbemail;
-                    $_SESSION['session_fullname']=$dbfullname;
-                    $_SESSION['session_points']=$dbpoints;
+                    $_SESSION['session_username']=$dbusername;                   
+                    $_SESSION['session_image_loaded_try'] = false;
+                    $_SESSION['session_image_loaded'] = "";
+                    
  
                     /* Redirect browser */
                     header("Location: welcome.php");

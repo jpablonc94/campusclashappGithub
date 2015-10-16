@@ -3,7 +3,7 @@ session_start();
 require_once 'lib.php';
 ?>
 <?php
-if(!isset($_SESSION["session_email"])) {
+if(!isset($_SESSION["session_username"])) {
  
     header("location:index.php");
 
@@ -86,13 +86,20 @@ if(!isset($_SESSION["session_email"])) {
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><?php echo $_SESSION['session_fullname']; ?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>
+                            <?php 
+                                $row = obtener_datos_from_db($_SESSION['session_username']);
+                                echo $row['username']; 
+                            ?>
+                            <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="profile.php"><i class="fa fa-fw fa-user"></i>Profile</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                                <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
                             </li>
                             <li class="divider"></li>
                             <li>
