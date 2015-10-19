@@ -56,19 +56,49 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 80px; border: 1px outset gray; padding: 13px 10px;">
-                    puntos: 
-                    <a href="profile.php" id="usuario-jp">
+                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 40px; border: 2px outset gray; padding: 4px 6px; font-size:15px">
+                    Puntos: 
+                    <a href="ranking.php" id="usuario-jp">
                         <?php 
                             echo $row['points']; 
                         ?>
                     </a>
-                </p>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 50px; border: 1px outset gray; padding: 13px 10px;">
+                    <br>
                     Posición: 
                     <a href="ranking.php" id="usuario-jp">
                         <?php 
                             echo $row['position']; 
+                        ?>
+                    </a>
+                </div>                
+                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border: 2px outset gray; padding: 13px 10px; font-size:18px;">
+                    Monedas: 
+                    <a href="tienda.php" id="usuario-jp">
+                        <?php 
+                            echo $row['monedas']; 
+                        ?>
+                    </a>
+                </p>
+                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border-style: outset none outset outset; border-width:2px; padding: 4px 6px; font-size:15px">
+                    Ptos Exp: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            echo $row['experiencia']; 
+                        ?>
+                    </a>
+                    <br>
+                    Next lvl: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            echo $row['next_lvl']; 
+                        ?>
+                    </a>
+                </div>
+                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 0px; border-style: outset outset outset none; border-width:2px; padding: 13px 10px; font-size:18px;">
+                    Lvl: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            echo $row['nivel']; 
                         ?>
                     </a>
                 </p>
@@ -144,6 +174,7 @@ if(!isset($_SESSION["session_username"])) {
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
                             Perfil de usuario
+                            <b href="" style="text-decoration:none; font-size: 30px; margin: 0px 20px 0px 550px; color:#252570;"> Nivel <?php echo $row['nivel'];?></b>
                         </h1> 
 
                     </div>
@@ -155,7 +186,7 @@ if(!isset($_SESSION["session_username"])) {
                         <img class="img-responsive" src="obtenerfotografia.php" style="margin:0px;">                  
                     </div>
                     <div class="col-lg-5 col-lg-offset-0">
-                         <table style="width:150%;">
+                         <table style="width:150%; margin:0px">
                             <tr>
                                 <td>Nombre y apellidos: </td>
                                 <td><b><?php echo $row['fullname'];?></b></td>
@@ -171,6 +202,14 @@ if(!isset($_SESSION["session_username"])) {
                             <tr>
                                 <td>Puntos: </td>
                                 <td><b><?php echo $row['points'];?></b></td>
+                            </tr>
+                            <tr>
+                                <td>Monedas: </td>
+                                <td><b><?php echo $row['monedas'];?></b></td>
+                            </tr>
+                            <tr>
+                                <td>Ptos de experiencia: </td>
+                                <td><b><?php echo $row['experiencia'];?></b></td>
                             </tr>
                         </table>
                     </div>

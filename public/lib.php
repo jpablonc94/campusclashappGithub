@@ -52,10 +52,14 @@ function obtener_datos_from_db($username){
     if($numrows!=0){
         while($row=mysql_fetch_assoc($query)){
             $dbusername=$row['username'];
-            $dbemail=$row['email'];
-            $dbfullname=$row['full_name'];
-            $dbpoints=$row['points'];
-            $dbposition=$row['position'];
+            $dbemail= $row['email'];
+            $dbfullname= $row['full_name'];
+            $dbpoints= $row['points'];
+            $dbposition= $row['position'];
+            $dbmonedas = $row['monedas'];
+            $dbnivel = $row['nivel'];
+            $dbexp = $row['experiencia'];
+            $dbnext = $row['next_lvl'];
         }    
 
         return array(
@@ -63,7 +67,11 @@ function obtener_datos_from_db($username){
                 "email" => $dbemail,
                 "fullname" => $dbfullname,
                 "points" => $dbpoints,
-                "position" => $dbposition
+                "position" => $dbposition,
+                "monedas" => $dbmonedas,
+                "nivel" => $dbnivel,
+                "experiencia" => $dbexp,
+                "next_lvl" => $dbnext
                );
     } else {
         return array(
@@ -71,7 +79,11 @@ function obtener_datos_from_db($username){
                 "email" => "NO encotrado",
                 "fullname" => "NO encotrado",
                 "points" => "NO encotrado",
-                "position" => "NO encotrado"
+                "position" => "NO encotrado",
+                "monedas" => "NO encotrado",
+                "nivel" => "NO encotrado",
+                "experiencia" => "NO encotrado",
+                "next_lvl" => "NO encotrado"
                );
     }
 }

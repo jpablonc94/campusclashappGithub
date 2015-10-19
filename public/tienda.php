@@ -57,19 +57,49 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 80px; border: 1px outset gray; padding: 13px 10px;">
-                    puntos: 
-                    <a href="profile.php" id="usuario-jp">
+                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 40px; border: 2px outset gray; padding: 4px 6px; font-size:15px">
+                    Puntos: 
+                    <a href="ranking.php" id="usuario-jp">
                         <?php 
                             echo $row['points']; 
                         ?>
                     </a>
-                </p>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 50px; border: 1px outset gray; padding: 13px 10px;">
+                    <br>
                     Posición: 
                     <a href="ranking.php" id="usuario-jp">
                         <?php 
                             echo $row['position']; 
+                        ?>
+                    </a>
+                </div>                
+                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border: 2px outset gray; padding: 13px 10px; font-size:18px;">
+                    Monedas: 
+                    <a href="tienda.php" id="usuario-jp">
+                        <?php 
+                            echo $row['monedas']; 
+                        ?>
+                    </a>
+                </p>
+                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border-style: outset none outset outset; border-width:2px; padding: 4px 6px; font-size:15px">
+                    Ptos Exp: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            echo $row['experiencia']; 
+                        ?>
+                    </a>
+                    <br>
+                    Next lvl: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            echo $row['next_lvl']; 
+                        ?>
+                    </a>
+                </div>
+                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 0px; border-style: outset outset outset none; border-width:2px; padding: 13px 10px; font-size:18px;">
+                    Lvl: 
+                    <a href="profile.php" id="usuario-jp">
+                        <?php 
+                            echo $row['nivel']; 
                         ?>
                     </a>
                 </p>

@@ -17,11 +17,6 @@
     color: white;
 }
 
-#usuario-jp:hover {
-    text-decoration: none;
-    color: hsl(240, 100%, 75%);
-}
-
 table, th, td {
     border: 1px none black;
     border-collapse: collapse;
