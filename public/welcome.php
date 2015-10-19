@@ -7,7 +7,8 @@ if(!isset($_SESSION["session_username"])) {
  
     header("location:index.php");
 
-} else {        
+} else { 
+    $row = obtener_datos_from_db($_SESSION['session_username']);       
 ?>
 
 <!DOCTYPE html>
@@ -53,13 +54,20 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 150px; border: 1px outset gray; padding: 13px 10px;">
+                <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 80px; border: 1px outset gray; padding: 13px 10px;">
                     puntos: 
                     <a href="profile.php" id="usuario-jp">
                         <?php 
-                            $row = obtener_datos_from_db($_SESSION['session_username']);
                             echo $row['points']; 
+                        ?>
+                    </a>
+                </p>
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 50px; border: 1px outset gray; padding: 13px 10px;">
+                    Posición: 
+                    <a href="ranking.php" id="usuario-jp">
+                        <?php 
+                            echo $row['position']; 
                         ?>
                     </a>
                 </p>
@@ -76,7 +84,7 @@ if(!isset($_SESSION["session_username"])) {
                         <ul class="dropdown-menu">
                             <li><a href="tienda.php">Tienda</a></li>
                             <li><a href="#">Tablón de anuncios</a></li>
-                            <li><a href="#">Clasificación</a></li>
+                            <li><a href="ranking.php">Clasificación</a></li>
                         </ul>
                     </li>
                     <li>
@@ -89,7 +97,6 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i>
                             <?php 
-                                $row = obtener_datos_from_db($_SESSION['session_username']);
                                 echo $row['username']; 
                             ?>
                             <b class="caret"></b>
@@ -167,7 +174,7 @@ if(!isset($_SESSION["session_username"])) {
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <a href="">
+                        <a href="ranking.php">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </a>
@@ -253,8 +260,8 @@ if(!isset($_SESSION["session_username"])) {
                     <p class="lead">Mi nombre es Juan Pablo Navarro Castillo y soy estudiante de Teleco (ETSIT) en la Universidad Politécnica de Cartagena.</p>
                     <p class="lead">Actualmente trabajo como becario para Telefónica y como alumno interno dentro del Departamento de Electrónica, Tecnología de Computadores y Proyectos de mi escuela.</p>
                 </div>
-                <div class="col-lg-3 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/yo.jpg" style="margin:80px 0px 0px 50px;">
+                <div class="col-lg-4 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="img/yo3.png" style="margin:10px 0px 0px 50px;">
                 </div>
             </div>
             <a href="#about-4" class="row btn btn-circle page-scroll">

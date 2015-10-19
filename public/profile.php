@@ -6,7 +6,7 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-      
+      $row = obtener_datos_from_db($_SESSION['session_username']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -56,12 +56,19 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 150px; border: 1px outset gray; padding: 13px 10px;">
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 80px; border: 1px outset gray; padding: 13px 10px;">
                     puntos: 
                     <a href="profile.php" id="usuario-jp">
                         <?php 
-                            $row = obtener_datos_from_db($_SESSION['session_username']);
                             echo $row['points']; 
+                        ?>
+                    </a>
+                </p>
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 50px; border: 1px outset gray; padding: 13px 10px;">
+                    Posición: 
+                    <a href="ranking.php" id="usuario-jp">
+                        <?php 
+                            echo $row['position']; 
                         ?>
                     </a>
                 </p>
@@ -77,7 +84,7 @@ if(!isset($_SESSION["session_username"])) {
                         <ul class="dropdown-menu">
                             <li><a href="tienda.php">Tienda</a></li>
                             <li><a href="#">Tablón de anuncios</a></li>
-                            <li><a href="#">Clasificación</a></li>
+                            <li><a href="ranking.php">Clasificación</a></li>
                         </ul>
                     </li>
                     <li>
@@ -90,7 +97,6 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i>
                             <?php 
-                                $row = obtener_datos_from_db($_SESSION['session_username']);
                                 echo $row['username']; 
                             ?>
                             <b class="caret"></b>
@@ -130,7 +136,6 @@ if(!isset($_SESSION["session_username"])) {
         </nav>
         <br>
         <br>
-        <br>
         <div id="page-wrapper" style="border: 10px #A5A5A5; border-style: double none double double;">
 
             <div class="container-fluid">
@@ -149,7 +154,6 @@ if(!isset($_SESSION["session_username"])) {
                     <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
                         <img class="img-responsive" src="obtenerfotografia.php" style="margin:0px;">                  
                     </div>
-                    <?php $row = obtener_datos_from_db($_SESSION['session_username']);?>
                     <div class="col-lg-5 col-lg-offset-0">
                          <table style="width:150%;">
                             <tr>

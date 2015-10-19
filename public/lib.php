@@ -55,18 +55,28 @@ function obtener_datos_from_db($username){
             $dbemail=$row['email'];
             $dbfullname=$row['full_name'];
             $dbpoints=$row['points'];
+            $dbposition=$row['position'];
         }    
 
         return array(
                 "username" => $dbusername,
                 "email" => $dbemail,
                 "fullname" => $dbfullname,
-                "points" => $dbpoints
+                "points" => $dbpoints,
+                "position" => $dbposition
+               );
+    } else {
+        return array(
+                "username" => "NO encotrado",
+                "email" => "NO encotrado",
+                "fullname" => "NO encotrado",
+                "points" => "NO encotrado",
+                "position" => "NO encotrado"
                );
     }
 }
 
-function cambiar_fullname($fullname, $newfullname){
+function cambiar_fullname($fullname, $newfullname, $username){
     $server="localhost";
     $database = "campusclash";
     $db_pass = 'T7tmn892AB3';
@@ -75,7 +85,7 @@ function cambiar_fullname($fullname, $newfullname){
     mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
     mysql_select_db($database) or die ("error2".mysql_error());
 
-    $resultado = mysql_query("UPDATE `usertbl` SET `full_name`= '$newfullname' WHERE `full_name`= '$fullname'");
+    $resultado = mysql_query("UPDATE `usertbl` SET `full_name`= '$newfullname' WHERE `username`= '$username'");
     if($resultado){
         return "Nombre cambiado correctamente.";
     } else {
@@ -83,8 +93,36 @@ function cambiar_fullname($fullname, $newfullname){
     }
 }
 
+function cambiar_password($password, $newpassword, $username){
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $query = mysql_query("SELECT * FROM `usertbl` WHERE `username`= '$username'");
+    $numrows=mysql_num_rows($query);
+    if($numrows!=0){
+        $row=mysql_fetch_assoc($query);
+        $dbpassword = $row['password'];
+        if($dbpassword == $password){
+            $resultado = mysql_query("UPDATE `usertbl` SET `password`= '$newpassword' WHERE `username`= '$username'");
+            if($resultado){
+                return "Contraseña cambiada correctamente.";
+            } else {
+                return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+            }
+        } else {
+            return "Contraseña antigua incorrecta, inténtelo de nuevo.";
+        }
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }   
+}
+
 function cambiar_email($email, $newemail){
-    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
         $nuevo_email=mysql_query("SELECT `email` FROM `usertbl` WHERE `email`='$newemail'");
         if(mysql_num_rows($nuevo_email)>0) {
             return "Email ya existente, pruebe otro.";
@@ -104,9 +142,6 @@ function cambiar_email($email, $newemail){
                 return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
             }
         }
-    } else {
-        return "El formato del email no es correcto, debe seguir la siguiente estructura: example@example.example";
-    }
 }
 
 function cambiar_username($username, $newusername){
@@ -132,5 +167,73 @@ function cambiar_username($username, $newusername){
     }
 }
 
+function generar_datos_ordenados($username){
+    $class = "col-lg-5 col-lg-offset-0";
+    $style = "t01";
+    $blue = "color:blue;";
+
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM usertbl ORDER BY points DESC");
+
+    $numrows=mysql_num_rows($query);
+    $n = 1;
+    $resultado = "No hay nadie matriculado";
+    if($numrows!=0){
+        $resultado = "  <div class='$class'>
+                            <table id='$style'>
+                                <tr>
+                                    <th>Posición</td>
+                                    <th>Nombre y apellidos</td>
+                                    <th>Nombre de usuario</td>
+                                    <th>Puntos</td>
+                                </tr>";
+
+        while($row=mysql_fetch_assoc($query)){
+            $dbusername=$row['username'];
+            $dbfullname=$row['full_name'];
+            $dbpoints=$row['points'];
+            if($dbusername==$username){
+                $individuo = "  <tr>
+                                    <td><b>$n</b></td>
+                                    <td><b>$dbfullname</b></td>
+                                    <td><b>$dbusername</b></td>
+                                    <td><b>$dbpoints</b></td>
+                                </tr>";
+                $resultado .= " <tr style='$blue'>
+                                    <td><b>$n</b></td>
+                                    <td><b>$dbfullname</b></td>
+                                    <td><b>$dbusername</b></td>
+                                    <td><b>$dbpoints</b></td>
+                                </tr>";
+            } else {
+                $resultado .= " <tr>
+                                    <td>$n</td>
+                                    <td>$dbfullname</td>
+                                    <td>$dbusername</td>
+                                    <td>$dbpoints</td>
+                                </tr>";
+            }            
+
+            $sql = mysql_query("UPDATE `usertbl` SET `position`= '$n' WHERE `username`= '$dbusername'");
+            if($sql){
+                $n++;
+            } else {
+                return "Ha ocurrido algún error.";
+            }
+        } 
+
+        $resultado .= "     </table>
+                        </div>";
+    }
+    return $resultado;
+}
 
 ?>

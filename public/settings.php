@@ -18,12 +18,12 @@ if(!isset($_SESSION["session_username"])) {
     } 
 */
     $row = obtener_datos_from_db($_SESSION['session_username']);
-
+    $username = $_SESSION["session_username"];
     $message1 = "";
     $message2 = "";
     $message3 = "";
     $message4 = ""; 
-
+    $message5 = "";
     
     if($_SESSION['session_image_loaded_try']){
         $message1 = $_SESSION['session_image_loaded'];
@@ -32,14 +32,18 @@ if(!isset($_SESSION["session_username"])) {
 
     if(isset($_POST["cambiar"])){ 
         if(!empty($_POST["fullname"])) {
-            $message2 = cambiar_fullname ($row['fullname'], $_POST["fullname"]);
+            $message2 = cambiar_fullname ($row['fullname'], $_POST["fullname"], $username);
         } else {
             if(!empty($_POST["email"])) {
                 $message3 = cambiar_email ($row['email'], $_POST["email"]);
             } else {
                 if(!empty($_POST["username"])) {
                     $message4 = cambiar_username ($row['username'], $_POST["username"]);
-                } 
+                } else {
+                    if(!empty($_POST["password"]) && !empty($_POST["newpassword"])){
+                        $message5 = cambiar_password ($_POST["password"], $_POST["newpassword"], $username);
+                    }
+                }
             }       
         }          
     }
@@ -93,12 +97,19 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 150px; border: 1px outset gray; padding: 13px 10px;">
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 80px; border: 1px outset gray; padding: 13px 10px;">
                     puntos: 
                     <a href="profile.php" id="usuario-jp">
                         <?php 
-                            $row = obtener_datos_from_db($_SESSION['session_username']);
                             echo $row['points']; 
+                        ?>
+                    </a>
+                </p>
+                <p class="navbar-brand" style="color:white; margin:0px 0px 0px 50px; border: 1px outset gray; padding: 13px 10px;">
+                    Posición: 
+                    <a href="ranking.php" id="usuario-jp">
+                        <?php 
+                            echo $row['position']; 
                         ?>
                     </a>
                 </p>
@@ -114,7 +125,7 @@ if(!isset($_SESSION["session_username"])) {
                         <ul class="dropdown-menu">
                             <li><a href="tienda.php">Tienda</a></li>
                             <li><a href="#">Tablón de anuncios</a></li>
-                            <li><a href="#">Clasificación</a></li>
+                            <li><a href="ranking.php">Clasificación</a></li>
                         </ul>
                     </li>
                     <li>
@@ -127,7 +138,6 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-user"></i>
                             <?php 
-                                $row = obtener_datos_from_db($_SESSION['session_username']);
                                 echo $row['username']; 
                             ?>
                             <b class="caret"></b>
@@ -166,10 +176,11 @@ if(!isset($_SESSION["session_username"])) {
             <!-- /.navbar-collapse -->
         </nav>
         <br>
-        <div id="page-wrapper" style="border: 10px #A5A5A5; border-style: double none double double;">
+        <div id="page-wrapper" style="margin: 0px 0px 20px 0px; border: 10px #A5A5A5; border-style: double none double double;">
 
             <div class="container-fluid">
-
+                                               
+                    
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -179,8 +190,7 @@ if(!isset($_SESSION["session_username"])) {
 
                     </div>
                 </div>
-                <!-- /.row -->
-
+                <!-- /.row --> 
                 <div class="row">
                     <div class="col-lg-3" style="margin:0px;">                        
                         <form name="cambiarimg" enctype="multipart/form-data" action="almacenar_imagen.php" method="post">
@@ -197,11 +207,11 @@ if(!isset($_SESSION["session_username"])) {
                     <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message1"; ?></p>
                 </div>
                  
-                <?php $row = obtener_datos_from_db($_SESSION['session_username']);?>
                 <div class="row">
                     <div class="col-lg-12" style="margin:0px;">                        
                         <form name="cambiar" action="settings.php" method="post">
                             <h4 style="margin: 0px;">Cambiar nombre completo:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message2"; ?></p>                            
                             <table style="width:100%; margin:0px;">
                                 <tr>
                                     <td><input name="fullname" type="text" class="form-control" placeholder="Actualmente: <?php echo $row['fullname'];?> *" id="fullname" required data-validation-required-message="Please enter your fullname."></td>
@@ -211,12 +221,12 @@ if(!isset($_SESSION["session_username"])) {
                             </table>                            
                         </form>                    
                     </div>
-                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message2"; ?></p>
                 </div>
                 <div class="row">
                     <div class="col-lg-12" style="margin:0px;">                        
                         <form name="cambiar" action="settings.php" method="post">
                             <h4 style="margin: 0px;">Cambiar email:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message3"; ?></p>
                             <table style="width:100%; margin:0px;">
                                 <tr>
                                     <td><input name="email" type="email" class="form-control" placeholder="Actualmente: <?php echo $row['email'];?> *" id="email" required data-validation-required-message="Please enter your email address."></td>
@@ -226,12 +236,12 @@ if(!isset($_SESSION["session_username"])) {
                             </table>                               
                         </form>                    
                     </div>
-                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message3"; ?></p>
                 </div>
                 <div class="row">
                     <div class="col-lg-12" style="margin:0px;">                        
                         <form name="cambiar" action="settings.php" method="post">
                             <h4 style="margin: 0px;">Cambiar nombre de usuario:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message4"; ?></p>
                             <table style="width:100%; margin:0px;">
                                 <tr>
                                     <td><input name="username" type="text" class="form-control" placeholder="Actualmente: <?php echo $row['username'];?> *" id="username" required data-validation-required-message="Please enter your username."></td>
@@ -240,9 +250,23 @@ if(!isset($_SESSION["session_username"])) {
                                 </tr>   
                             </table>                            
                         </form>                    
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="settings.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar contraseña de usuario:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message5"; ?></p>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="password" type="password" class="form-control" placeholder="Antigua contraseña" id="password" required data-validation-required-message="Please enter your old password."></td>
+                                    <td><input name="newpassword" type="password" class="form-control" placeholder="Nueva contraseña" id="newpassword" required data-validation-required-message="Please enter your new password."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                </tr>
+                            </table>
+                        </form>                    
                     </div>
-                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message4"; ?></p>
-                </div>            
+                </div>             
             </div>
             <!-- /.container-fluid -->
 
