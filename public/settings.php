@@ -97,7 +97,7 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 40px; border: 2px outset gray; padding: 4px 6px; font-size:15px">
+                <!--<div class="navbar-brand" style="color:gray; margin:0px 0px 0px 40px; border: 2px outset gray; padding: 4px 6px; font-size:15px">
                     Puntos: 
                     <a href="ranking.php" id="usuario-jp">
                         <?php 
@@ -135,14 +135,14 @@ if(!isset($_SESSION["session_username"])) {
                         ?>
                     </a>
                 </div>
-                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 0px; border-style: outset outset outset none; border-width:2px; padding: 13px 10px; font-size:18px;">
-                    Lvl: 
-                    <a href="profile.php" id="usuario-jp">
+                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 0px; border-style: outset outset outset none; border-width:2px; padding: 13px 5px; font-size:18px;"> 
+                    <a href="profile.php" id="usuario-jp" style="border-style: none none none double ;border-color:gray; padding: 5px 10px">
+                        Lvl:
                         <?php 
                             echo $row['nivel']; 
                         ?>
                     </a>
-                </p>
+                </p>-->
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

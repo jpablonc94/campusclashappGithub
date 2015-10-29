@@ -248,4 +248,157 @@ function generar_datos_ordenados($username){
     return $resultado;
 }
 
+function generar_productos_ordenados(){
+
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM `productos`");
+
+    $numrows=mysql_num_rows($query);
+    $n = 1;
+    $resultado = "No hay productos";
+    if($numrows!=0){
+        $resultado = "";
+        $contador = 1;
+        while($row=mysql_fetch_assoc($query)){
+            //Base de datos
+            $id=$row['id'];
+            $nombre=$row['nombre'];
+            $description=$row['description'];
+            $imagen=$row['imagen'];
+            $tipoimagen=$row['tipo_imagen'];
+            $criterio=$row['criterio'];
+            $preferencia=$row['preferencia'];
+            $precio = $row['precio'];
+            $reviews = $row['reviews'];
+            
+            //EStilo
+            $class1 = "col-md-4 col-sm-6 portfolio-item";
+            $style = "  height: 500px;";
+            $href1 = "#portfolioModal$id";
+            $class2 = "portfolio-link";
+            $modal = "modal";
+            $class3 = "portfolio-hover";
+            $class4 = "portfolio-hover-content";
+            $class5 = "fa fa-plus fa-3x";
+            $src1 = "imagen_mostrar.php?id=$id";
+            $class6 = "img-responsive";
+            $class7 = "portfolio-caption";
+            $class8 = "pull-right points-jp";
+            $href2 = "#";
+            $class9 = "ratings";
+            $class10 = "pull-right points-jp";
+            $class11 = "glyphicon glyphicon-star";
+            $class12 = "glyphicon glyphicon-star-empty";
+            $vacio = "";
+
+
+            // Lo que se va a mostrar
+
+            $resultado .= "     <div class='$class1' style='$style'>
+                                    <a href='$href1' class='$class2' data-toggle='$modal'>
+                                        <div class='$class3'>
+                                            <div class='$class4'>
+                                                <i class='$class5'></i>
+                                            </div>
+                                        </div>
+                                        <img src='$src1' class='$class6' alt=$vacio>
+                                    </a>
+                                    <div class='$class7' >
+                                        <h4 class='$class8'>$precio monedas</h4>
+                                        <h4 ><a href='$href2'>$nombre</a></h4>
+                                        <p>$description</p>
+                                    </div>
+                                    <div class='$class9'>
+                                        <p class='$class10'>46 reviews</p>
+                                        <p>
+                                            <span class='$class11'></span>
+                                            <span class='$class11'></span>
+                                            <span class='$class11'></span>
+                                            <span class='$class11'></span>
+                                            <span class='$class12'></span>
+                                        </p>
+                                    </div>
+                                </div>                                
+                                ";
+        } 
+    }
+    return $resultado;
+}
+
+function generar_pags_individuales(){
+
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM `productos`");
+
+    $numrows=mysql_num_rows($query);
+    $n = 1;
+    $resultado = "No hay productos";
+    if($numrows!=0){
+        $resultado = "";
+        $contador = 1;
+        while($row=mysql_fetch_assoc($query)){
+            //Base de datos
+            $id=$row['id'];
+            $nombre=$row['nombre'];
+            $description=$row['long_description'];
+            $imagen=$row['imagen'];
+            $tipoimagen=$row['tipo_imagen'];
+            $criterio=$row['criterio'];
+            $preferencia=$row['preferencia'];
+            $precio = $row['precio'];
+            $reviews = $row['reviews'];
+            
+            //EStilo
+
+
+            // Lo que se va a mostrar
+
+            /*$resultado .= " <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-content">
+                                    <div class="close-modal" data-dismiss="modal">
+                                        <div class="lr">
+                                            <div class="rl">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-lg-offset-2">
+                                                <div class="modal-body">
+                                                <!-- Project Details Go Here -->
+                                                    <h2>Project Name</h2>
+                                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                                                    <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
+                                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                    
+                                ";*/
+        } 
+    }
+    return $resultado;
+}
+
 ?>

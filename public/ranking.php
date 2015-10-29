@@ -44,8 +44,8 @@ if(!isset($_SESSION["session_username"])) {
 
     <style>
         table {
-            width:200%;
-            margin: 30px 150px;
+            width:180%;
+            margin: 30px 140px;
             border: 4px solid black;
         }
         table, th, td {    
@@ -66,6 +66,7 @@ if(!isset($_SESSION["session_username"])) {
             color: white;
         }
     </style>
+
 </head>
 
 <body id="page-top">
@@ -81,52 +82,6 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 40px; border: 2px outset gray; padding: 4px 6px; font-size:15px">
-                    Puntos: 
-                    <a href="ranking.php" id="usuario-jp">
-                        <?php 
-                            echo $row['points']; 
-                        ?>
-                    </a>
-                    <br>
-                    Posición: 
-                    <a href="ranking.php" id="usuario-jp">
-                        <?php 
-                            echo $row['position']; 
-                        ?>
-                    </a>
-                </div>                
-                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border: 2px outset gray; padding: 13px 10px; font-size:18px;">
-                    Monedas: 
-                    <a href="tienda.php" id="usuario-jp">
-                        <?php 
-                            echo $row['monedas']; 
-                        ?>
-                    </a>
-                </p>
-                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border-style: outset none outset outset; border-width:2px; padding: 4px 6px; font-size:15px">
-                    Ptos Exp: 
-                    <a href="profile.php" id="usuario-jp">
-                        <?php 
-                            echo $row['experiencia']; 
-                        ?>
-                    </a>
-                    <br>
-                    Next lvl: 
-                    <a href="profile.php" id="usuario-jp">
-                        <?php 
-                            echo $row['next_lvl']; 
-                        ?>
-                    </a>
-                </div>
-                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 0px; border-style: outset outset outset none; border-width:2px; padding: 13px 10px; font-size:18px;">
-                    Lvl: 
-                    <a href="profile.php" id="usuario-jp">
-                        <?php 
-                            echo $row['nivel']; 
-                        ?>
-                    </a>
-                </p>
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -196,14 +151,13 @@ if(!isset($_SESSION["session_username"])) {
     <section id="ranking"></section> 
     <div style="border: 80px solid black;">  
     <section class="bg-light-gray" style="margin:80px 0px 10px 0px;">
-        <div class="container">            
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading" style="margin:0px;">Ranking de CampusClash</h2>
-                </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading" style="margin:0px;">Ranking de CampusClash</h2>
             </div>
         </div>
         <div class="row">
+            <h1 style="text-align:center;">Ranking Global</h1>
             <?php 
                 $ranking = generar_datos_ordenados($_SESSION['session_username']);
                 echo $ranking;

@@ -45,7 +45,8 @@ else
  
         // Insertamos en la base de datos.
         $resultado = mysql_query("UPDATE `usertbl` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
- 
+        //$eyeyey = mysql_query ("INSERT INTO `productos`(`imagen`, `tipo_imagen`) VALUES ('$data', '$tipo')");
+
         if ($resultado)
         {
             $_SESSION['session_image_loaded']="La imagen ha sido reemplazada exitosamente.";
