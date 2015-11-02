@@ -149,7 +149,7 @@ if(!isset($_SESSION["session_username"])) {
         </div>
     </header>
     <section id="ranking"></section> 
-    <div style="border: 80px solid black;">  
+    <div style="border: 80px solid black; ">  
     <section class="bg-light-gray" style="margin:80px 0px 10px 0px;">
         <div class="row">
             <div class="col-lg-12 text-center">

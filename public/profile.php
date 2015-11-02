@@ -56,52 +56,6 @@ if(!isset($_SESSION["session_username"])) {
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="welcome.php#page-top">CampusCLASH</a>
-                <!--<div class="navbar-brand" style="color:gray; margin:0px 0px 0px 40px; border: 2px outset gray; padding: 4px 6px; font-size:15px">
-                    Puntos: 
-                    <a href="ranking.php" id="usuario-jp">
-                        <?php 
-                            echo $row['points']; 
-                        ?>
-                    </a>
-                    <br>
-                    Posición: 
-                    <a href="ranking.php" id="usuario-jp">
-                        <?php 
-                            echo $row['position']; 
-                        ?>
-                    </a>
-                </div>                
-                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border: 2px outset gray; padding: 13px 10px; font-size:18px;">
-                    Monedas: 
-                    <a href="tienda.php" id="usuario-jp">
-                        <?php 
-                            echo $row['monedas']; 
-                        ?>
-                    </a>
-                </p>
-                <div class="navbar-brand" style="color:gray; margin:0px 0px 0px 10px; border-style: outset none outset outset; border-width:2px; padding: 4px 6px; font-size:15px">
-                    Ptos Exp: 
-                    <a href="profile.php" id="usuario-jp">
-                        <?php 
-                            echo $row['experiencia']; 
-                        ?>
-                    </a>
-                    <br>
-                    Next lvl: 
-                    <a href="profile.php" id="usuario-jp">
-                        <?php 
-                            echo $row['next_lvl']; 
-                        ?>
-                    </a>
-                </div>
-                <p class="navbar-brand" style="color:gray; margin:0px 0px 0px 0px; border-style: outset outset outset none; border-width:2px; padding: 13px 5px; font-size:18px;"> 
-                    <a href="profile.php" id="usuario-jp" style="border-style: none none none double ;border-color:gray; padding: 5px 10px">
-                        Lvl:
-                        <?php 
-                            echo $row['nivel']; 
-                        ?>
-                    </a>
-                </p>-->
             </div> 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -159,7 +113,10 @@ if(!isset($_SESSION["session_username"])) {
                     </li>
                     <li>
                         <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                    </li>                    
+                    </li>
+                    <li>
+                        <a href="vendedor.php"><i class="fa fa-fw fa-shopping-cart"></i> Subir Producto</a>
+                    </li>                      
                 </ul>
             </div> 
             <!-- /.navbar-collapse -->
@@ -183,7 +140,7 @@ if(!isset($_SESSION["session_username"])) {
 
                 <div class="row">
                     <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
-                        <img class="img-responsive" src="obtenerfotografia.php" style="margin:0px;">                  
+                        <img class="img-responsive" src="mostrar_foto_usuario.php" style="margin:0px;">                  
                     </div>
                     <div class="col-lg-5 col-lg-offset-0">
                          <table style="width:150%; margin:0px">

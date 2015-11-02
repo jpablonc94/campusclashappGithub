@@ -6,17 +6,36 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-/*Comprobación de que es una imagen correcta
-    if(!empty($_POST)) {
-        if (subir_fichero('userimg','imagen')){
-            $message = cambiar_imagen();            
-        } else {
-            $message = 'Archivo no aceptado';
+
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    if(isset($_GET['id'])){
+        if ($_GET['id'] > 0)
+        {
+            $_SESSION['session_producto_id'] = $_GET['id'];
+            $consulta = "SELECT * FROM `productos` WHERE `id`={$_GET['id']}";
+            $resultado = @mysql_query($consulta) or die(mysql_error());
+            $row = mysql_fetch_assoc($resultado);
+            $nombre=$row['nombre'];
+            $description=$row['description'];
+            $imagen=$row['imagen'];
+            $tipoimagen=$row['tipo_imagen'];
+            $criterio=$row['criterio'];
+            $preferencia=$row['preferencia'];
+            $precio = $row['precio'];
+            $reviews = $row['reviews'];       
         }
-    } else {
-        $message = '';
-    } 
-*/
+    }
+
+    $id = $_SESSION['session_producto_id'];
+    
+
     $row = obtener_datos_from_db($_SESSION['session_username']);
     $username = $_SESSION["session_username"];
     $message1 = "";
@@ -24,6 +43,7 @@ if(!isset($_SESSION["session_username"])) {
     $message3 = "";
     $message4 = ""; 
     $message5 = "";
+    $message6 = "";
     
     if($_SESSION['session_image_loaded_try']){
         $message1 = $_SESSION['session_image_loaded'];
@@ -31,23 +51,26 @@ if(!isset($_SESSION["session_username"])) {
     }
 
     if(isset($_POST["cambiar"])){ 
-        if(!empty($_POST["fullname"])) {
-            $message2 = cambiar_fullname ($row['fullname'], $_POST["fullname"], $username);
+        if(!empty($_POST["negocio"])) {
+            $message2 = cambiar_negocio ($_POST["negocio"], $id);
         } else {
-            if(!empty($_POST["email"])) {
-                $message3 = cambiar_email ($row['email'], $_POST["email"]);
+            if(!empty($_POST["name"])) {
+                $message3 = cambiar_nombre_producto ($_POST["name"], $id);
             } else {
-                if(!empty($_POST["username"])) {
-                    $message4 = cambiar_username ($row['username'], $_POST["username"]);
+                if(!empty($_POST["short_description"])) {
+                    $message4 = cambiar_short_description ($_POST["short_description"], $id);
                 } else {
-                    if(!empty($_POST["password"]) && !empty($_POST["newpassword"])){
-                        $message5 = cambiar_password ($_POST["password"], $_POST["newpassword"], $username);
+                    if(!empty($_POST["description"])){
+                        $message5 = cambiar_description ($_POST["description"], $id);
+                    } else {
+                        if(!empty($_POST["precio"])){
+                            $message6 = cambiar_precio ($_POST["precio"], $id);
+                        }
                     }
                 }
             }       
         }          
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -172,16 +195,92 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
-                            Ajustes
+                            Ajustes del producto
                         </h1> 
 
                     </div>
                 </div>
                 <!-- /.row --> 
                 <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="modificar_producto.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar nombre de la empresa:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message2"; ?></p>                            
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="negocio" type="text" class="form-control" placeholder="Nombre de tu negocio" id="negocio" required data-validation-required-message="Por favor, introduzca el nombre de su negocio."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                            
+                        </form>                    
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="modificar_producto.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar nombre del producto:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message3"; ?></p>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="name" type="text" class="form-control" placeholder="Nombre de tu producto" id="name" required data-validation-required-message="Por favor, introduzca el nombre de su producto."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                               
+                        </form>                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="modificar_producto.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar descripción corta:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message4"; ?></p>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input name="short_description" type="text" class="form-control" placeholder="Descripción corta de tu producto" id="short_description" required data-validation-required-message="Por favor, introduzca una descripción corta de su producto."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                            
+                        </form>                    
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="modificar_producto.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar descripción larga</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message5"; ?></p>
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><textarea rows="10" name="description" class="form-control" placeholder="Descripción larga de tu producto" id="description" required data-validation-required-message="Por favor, introduzca una descripción más detallada de su producto."></textarea></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                </tr>
+                            </table>
+                        </form>                    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <form name="cambiar" action="modificar_producto.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar precio:</h4>
+                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message6"; ?></p>                            
+                            <table style="width:100%; margin:0px;">
+                                <tr>
+                                    <td><input type="number" name="precio" min="1" max="1000" class="form-control" placeholder="Precio en monedas" id="precio" required data-validation-required-message="Por favor, introduzca precio en monedas de su producto."></td>
+                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><p style="color:black; margin:10px;"></p></td>
+                                </tr>   
+                            </table>                            
+                        </form>                    
+                    </div>                    
+                </div> 
+
+                <div class="row">
                     <div class="col-lg-3" style="margin:0px;">                        
-                        <form name="cambiarimg" enctype="multipart/form-data" action="subir_foto_usuario.php" method="post">
-                            <h4 style="margin: 0px;">Cambiar Imagen:</h4>
+                        <form name="cambiarimg" enctype="multipart/form-data" action="actualizar_imagen_pequeña.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar Imagen Pequeña:</h4>
                             <table style="width:100%; margin:0px;">
                                 <tr>
                                     <td><input id="imagen" type="file" name="imagen"></td>
@@ -193,67 +292,22 @@ if(!isset($_SESSION["session_username"])) {
                     </div>
                     <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message1"; ?></p>
                 </div>
-                 
+
                 <div class="row">
-                    <div class="col-lg-12" style="margin:0px;">                        
-                        <form name="cambiar" action="settings.php" method="post">
-                            <h4 style="margin: 0px;">Cambiar nombre completo:</h4>
-                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message2"; ?></p>                            
+                    <div class="col-lg-3" style="margin:0px;">                        
+                        <form name="cambiarimg" enctype="multipart/form-data" action="actualizar_imagen_grande.php" method="post">
+                            <h4 style="margin: 0px;">Cambiar Imagen Grande:</h4>
                             <table style="width:100%; margin:0px;">
                                 <tr>
-                                    <td><input name="fullname" type="text" class="form-control" placeholder="Actualmente: <?php echo $row['fullname'];?> *" id="fullname" required data-validation-required-message="Please enter your fullname."></td>
-                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
+                                    <td><input id="imagen_grande" type="file" name="imagen_grande"></td>
+                                    <td><button name="cambiarimg" type="submit" class="btn btn-xl">Cambiar</button></td>
                                     <td><p style="color:black; margin:10px;"></p></td>
                                 </tr>   
-                            </table>                            
-                        </form>                    
+                            </table>                           
+                        </form>                     
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12" style="margin:0px;">                        
-                        <form name="cambiar" action="settings.php" method="post">
-                            <h4 style="margin: 0px;">Cambiar email:</h4>
-                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message3"; ?></p>
-                            <table style="width:100%; margin:0px;">
-                                <tr>
-                                    <td><input name="email" type="email" class="form-control" placeholder="Actualmente: <?php echo $row['email'];?> *" id="email" required data-validation-required-message="Please enter your email address."></td>
-                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
-                                    <td><p style="color:black; margin:10px;"></p></td>
-                                </tr>   
-                            </table>                               
-                        </form>                    
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12" style="margin:0px;">                        
-                        <form name="cambiar" action="settings.php" method="post">
-                            <h4 style="margin: 0px;">Cambiar nombre de usuario:</h4>
-                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message4"; ?></p>
-                            <table style="width:100%; margin:0px;">
-                                <tr>
-                                    <td><input name="username" type="text" class="form-control" placeholder="Actualmente: <?php echo $row['username'];?> *" id="username" required data-validation-required-message="Please enter your username."></td>
-                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
-                                    <td><p style="color:black; margin:10px;"></p></td>
-                                </tr>   
-                            </table>                            
-                        </form>                    
-                    </div>                    
-                </div>
-                <div class="row">
-                    <div class="col-lg-12" style="margin:0px;">                        
-                        <form name="cambiar" action="settings.php" method="post">
-                            <h4 style="margin: 0px;">Cambiar contraseña de usuario:</h4>
-                            <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message5"; ?></p>
-                            <table style="width:100%; margin:0px;">
-                                <tr>
-                                    <td><input name="password" type="password" class="form-control" placeholder="Antigua contraseña" id="password" required data-validation-required-message="Please enter your old password."></td>
-                                    <td><input name="newpassword" type="password" class="form-control" placeholder="Nueva contraseña" id="newpassword" required data-validation-required-message="Please enter your new password."></td>
-                                    <td><button name="cambiar" type="submit" class="btn btn-xl">Cambiar</button></td>
-                                </tr>
-                            </table>
-                        </form>                    
-                    </div>
-                </div>             
+                    <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message1"; ?></p>
+                </div>            
             </div>
             <!-- /.container-fluid -->
 

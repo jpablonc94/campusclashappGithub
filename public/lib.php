@@ -20,7 +20,7 @@ function subir_fichero($directorio_destino, $nombre_fichero)
         echo 1;
         // Si se trata de una imagen   
         if (((strpos($img_type, "gif") || strpos($img_type, "jpeg") ||
- strpos($img_type, "jpg")) || strpos($img_type, "png")))
+            strpos($img_type, "jpg")) || strpos($img_type, "png")))
         {
             //¿Tenemos permisos para subir la imágen?
             echo 2;
@@ -179,6 +179,97 @@ function cambiar_username($username, $newusername){
     }
 }
 
+function cambiar_negocio($negocio, $id){
+    
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $resultado = mysql_query("UPDATE `productos` SET `comercio`= '$negocio' WHERE `id`= '$id'");
+    if($resultado){
+        return "Nombre del negocio cambiado correctamente.";
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }
+}
+
+function cambiar_nombre_producto($nombre, $id){
+    
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $resultado = mysql_query("UPDATE `productos` SET `nombre`= '$nombre' WHERE `id`= '$id'");
+    if($resultado){
+        return "Nombre del producto cambiado correctamente.";
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }
+}
+
+function cambiar_short_description($short, $id){
+    
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $resultado = mysql_query("UPDATE `productos` SET `description`= '$short' WHERE `id`= '$id'");
+    if($resultado){
+        return "Descripción cambiada correctamente.";
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }
+}
+
+function cambiar_description($description, $id){
+    
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $resultado = mysql_query("UPDATE `productos` SET `long_description`= '$description' WHERE `id`= '$id'");
+    if($resultado){
+        return "Descripción cambiada correctamente.";
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }
+}
+
+function cambiar_precio($precio, $id){
+    
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+    
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    $resultado = mysql_query("UPDATE `productos` SET `precio`= '$precio' WHERE `id`= '$id'");
+    if($resultado){
+        return "Precio del producto cambiado correctamente.";
+    } else {
+        return "Ha ocurrido algún error, pruebe otra vez en unos minutos.";
+    }
+}
+
+
 function generar_datos_ordenados($username){
     $class = "col-lg-5 col-lg-offset-0";
     $style = "t01";
@@ -334,6 +425,88 @@ function generar_productos_ordenados(){
     return $resultado;
 }
 
+function generar_productos_de_usuario($username){
+
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM `productos` WHERE `vendedor`='$username'");
+
+    $numrows=mysql_num_rows($query);
+    $resultado = "No hay productos";
+    if($numrows!=0){
+        $resultado = "";
+        $contador = 1;
+        while($row=mysql_fetch_assoc($query)){
+            //Base de datos
+            $id=$row['id'];
+            $nombre=$row['nombre'];
+            $description=$row['description'];
+            $imagen=$row['imagen'];
+            $tipoimagen=$row['tipo_imagen'];
+            $criterio=$row['criterio'];
+            $preferencia=$row['preferencia'];
+            $precio = $row['precio'];
+            $reviews = $row['reviews'];
+            
+            //EStilo
+            $class1 = "col-md-4 col-sm-6 portfolio-item";
+            $style = "  height: 500px;";
+            $href1 = "#portfolioModal$id";
+            $class2 = "portfolio-link";
+            $modal = "modal";
+            $class3 = "portfolio-hover";
+            $class4 = "portfolio-hover-content";
+            $class5 = "fa fa-plus fa-3x";
+            $src1 = "imagen_mostrar.php?id=$id";
+            $class6 = "img-responsive";
+            $class7 = "portfolio-caption";
+            $class8 = "pull-right points-jp";
+            $href2 = "#";
+            $class9 = "ratings";
+            $class10 = "pull-right points-jp";
+            $class11 = "glyphicon glyphicon-star";
+            $class12 = "glyphicon glyphicon-star-empty";
+            $vacio = "";
+            $href3 = "modificar_producto.php?id=$id";
+
+
+            // Lo que se va a mostrar
+
+            $resultado .= "     <div class='$class1' style='$style'>
+                                        
+                                    <img src='$src1' class='$class6' alt=$vacio>
+                                    
+                                    <div class='$class7' >
+                                        <h4 class='$class8'>$precio monedas</h4>
+                                        <h4 ><a href='$href2'>$nombre</a></h4>
+                                        <p>$description</p>
+                                    </div>
+                                    <div class='$class9'>
+                                        <p class='$class10'>46 reviews</p>
+                                        <p>
+                                            <span class='$class11'></span>
+                                            <span class='$class11'></span>
+                                            <span class='$class11'></span>
+                                            <span class='$class11'></span>
+                                            <span class='$class12'></span>
+                                        </p>
+                                    </div>
+                                    <a href='$href3'>Modificar Producto </a>
+                                </div>                                
+                                ";
+        } 
+    }
+    return $resultado;
+}
+
 function generar_pags_individuales(){
 
     $server="localhost";
@@ -359,6 +532,7 @@ function generar_pags_individuales(){
             $id=$row['id'];
             $nombre=$row['nombre'];
             $description=$row['long_description'];
+            $shortdescription=$row['description'];
             $imagen=$row['imagen'];
             $tipoimagen=$row['tipo_imagen'];
             $criterio=$row['criterio'];
@@ -367,35 +541,54 @@ function generar_pags_individuales(){
             $reviews = $row['reviews'];
             
             //EStilo
-
+            $class1="portfolio-modal modal fade";
+            $id1 = "portfolioModal$id";
+            $tabindex = "-1";
+            $role = "dialog";
+            $true = "true";
+            $class2 = "modal-content";
+            $class3 = "close-modal";
+            $modal = "modal";
+            $class4 = "lr";
+            $class5 = "rl";
+            $class6 = "container";
+            $class7 = "row";
+            $class8 = "col-lg-8 col-lg-offset-2";
+            $class9 = "modal-body";
+            $class10 = "item-intro text-muted";
+            $class11 = "img-responsive img-centered";
+            $src1 = "imagen_grande_mostrar.php?id=$id";
+            $vacio = "";
+            $type = "button";
+            $class12 = "btn btn-primary";
+            $class13 = "fa fa-times";
 
             // Lo que se va a mostrar
-
-            /*$resultado .= " <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-                                <div class="modal-content">
-                                    <div class="close-modal" data-dismiss="modal">
-                                        <div class="lr">
-                                            <div class="rl">
+            $resultado .= " <div class='$class1' id='$id1' tabindex='$tabindex' role='$role' aria-hidden='$true'>
+                                <div class='$class2'>
+                                    <div class='$class3' data-dismiss='$modal'>
+                                        <div class='$class4'>
+                                            <div class='$class5'>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-8 col-lg-offset-2">
-                                                <div class="modal-body">
+                                    <div class='$class6'>
+                                        <div class='$class7'>
+                                            <div class='$class8'>
+                                                <div class='$class9'>
                                                 <!-- Project Details Go Here -->
-                                                    <h2>Project Name</h2>
-                                                    <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                                                    <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
-                                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                                                    <h2>$nombre</h2>
+                                                    <p class='$class10'>$shortdescription</p>
+                                                    <img class='$class11' src='$src1' alt='$vacio'>
+                                                    <p>$description</p>
+                                                    <button type='$type' class='$class12' data-dismiss='$modal'><i class='$class13'></i> Close Product</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>                                    
-                                ";*/
+                                ";
         } 
     }
     return $resultado;
