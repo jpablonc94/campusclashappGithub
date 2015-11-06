@@ -37,6 +37,12 @@ if(!isset($_SESSION["session_username"])) {
     
 
     $row = obtener_datos_from_db($_SESSION['session_username']);
+    $row2 = obtener_datos_producto_from_db($id);
+
+    if(!es_producto_de_usuario($id,$_SESSION['session_username'])){
+        header("location:productos.php");
+    }
+
     $username = $_SESSION["session_username"];
     $message1 = "";
     $message2 = "";
@@ -179,7 +185,13 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li> 
                     <li>
-                        <a href="vendedor.php"><i class="fa fa-fw fa-shopping-cart"></i> Subir Producto</a>
+                        <a href="vendedor.php"><i class="fa fa-fw fa-plus"></i> Nuevo Producto</a>
+                    </li>
+                    <li>
+                        <a href="productos.php"><i class="fa fa-fw fa-database"></i> Tus Productos</a>
+                    </li> 
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Tus Compras</a>
                     </li>                     
                 </ul>
             </div>
@@ -197,7 +209,16 @@ if(!isset($_SESSION["session_username"])) {
                         <h1 class="page-header" style="margin:20px 0px;">
                             Ajustes del producto
                         </h1> 
-
+                        <h2 style="text-align:center; color:gray;">
+                            ----------
+                            <div style="color:black;">
+                            <?php
+                                echo $row2["productname"];
+                            ?>
+                            </div>
+                            ----------
+                        </h2>
+                        <hr>
                     </div>
                 </div>
                 <!-- /.row --> 
@@ -307,7 +328,14 @@ if(!isset($_SESSION["session_username"])) {
                         </form>                     
                     </div>
                     <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message1"; ?></p>
-                </div>            
+                </div> 
+                <div class="row">
+                    <div class="col-lg-12" style="margin:0px;">                        
+                        <h4 style="margin: 0px;">Eliminar Producto de la base de datos</h4>
+                        <br>
+                        <a href="eliminar_producto.php"><button>Eliminar Producto</button></a>
+                   </div>
+                </div>           
             </div>
             <!-- /.container-fluid -->
 

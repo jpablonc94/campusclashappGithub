@@ -115,8 +115,14 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
                     </li>
                     <li>
-                        <a href="vendedor.php"><i class="fa fa-fw fa-shopping-cart"></i> Subir Producto</a>
-                    </li>                      
+                        <a href="vendedor.php"><i class="fa fa-fw fa-plus"></i> Nuevo Producto</a>
+                    </li>
+                    <li>
+                        <a href="productos.php"><i class="fa fa-fw fa-database"></i> Tus Productos</a>
+                    </li> 
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Tus Compras</a>
+                    </li>                       
                 </ul>
             </div> 
             <!-- /.navbar-collapse -->

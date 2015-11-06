@@ -6,14 +6,7 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-
-    $row = obtener_datos_from_db($_SESSION['session_username']);    
-    $usuario = $row['username'];
-    $message1 = "";
-    if($_SESSION['session_upload_product_try']){
-        $message1 = $_SESSION['session_upload_message'];
-        $_SESSION['session_upload_product_try']=false;
-    }
+    $row = obtener_datos_from_db($_SESSION['session_username']);
 
 ?>
 <!DOCTYPE html>
@@ -130,7 +123,7 @@ if(!isset($_SESSION["session_username"])) {
                     </li> 
                     <li>
                         <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Tus Compras</a>
-                    </li>                 
+                    </li>                  
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -139,54 +132,24 @@ if(!isset($_SESSION["session_username"])) {
         <div id="page-wrapper" style="margin: 0px 0px 20px 0px; border: 10px #A5A5A5; border-style: double none double double;">
 
             <div class="container-fluid">
-                                               
-                    
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header" style="margin:20px 0px;">
-                            Sube tu producto
-                        </h1> 
-
-                    </div>
-                </div>
-                <p style="color:blue; font-size:15px; margin:0px;"><?php echo "$message1"; ?></p>
-                <!-- /.row --> 
-                <div class="row">
-                    <div class="col-lg-12" style="margin:0px;">                        
-                        <form name="cambiarimg" enctype="multipart/form-data" action="registrar_producto.php" method="post" >
-                            <label>Nombre del negocio</label>
-                            <input name="negocio" type="text" class="form-control" placeholder="Nombre de tu negocio" id="negocio" required data-validation-required-message="Por favor, introduzca el nombre de su negocio.">   
-                            <hr>
-                            <label>Nombre del producto</label>
-                            <input name="name" type="text" class="form-control" placeholder="Nombre de tu producto" id="name" required data-validation-required-message="Por favor, introduzca el nombre de su producto.">   
-                            <hr>       
-                            <label>Descripción corta</label>
-                            <input name="short_description" type="text" class="form-control" placeholder="Descripción corta de tu producto" id="short_description" required data-validation-required-message="Por favor, introduzca una descripción corta de su producto.">
-                            <hr> 
-                            <label>Descripción</label>
-                            <textarea rows="10" name="description" class="form-control" placeholder="Descripción larga de tu producto" id="description" required data-validation-required-message="Por favor, introduzca una descripción más detallada de su producto."></textarea>
-                            <hr> 
-                            <label>Precio</label>
-                            <input type="number" name="precio" min="1" max="1000" class="form-control" placeholder="Precio en monedas" id="precio" required data-validation-required-message="Por favor, introduzca precio en monedas de su producto.">
-                            <hr> 
-                            <label>Imagen pequeña</label>
-                            <input id="imagen" type="file" name="imagen">
-                            <hr> 
-                            <label>Imagen grande</label>
-                            <input id="imagen_grande" type="file" name="imagen_grande">
-                            <br>     
-                            <input id="username" type="hidden" name="username" value="<?php $usuario;?>">
-
-                            <button name="submit" type="submit" class="btn btn-xl" style="margin:40px 400px;">Subir Producto</button>                 
-                        </form> 
-
-                    </div>
-                </div>
-                        
+                <h1>¿Estás seguro de que quiere borrar su cuenta de usuario? </h1>
+                <h2>Perderá todos sus puntos y regalos....</h2> 
             </div>
-            <!-- /.container-fluid -->
 
+            <table style="width:100%; margin:0px;">
+                <tr>
+                    <td>
+                    <a href="delete.php">
+                        <button class="btn btn-xl" style="font-size:40px;">Si <i class="fa fa-fw fa-2x fa-meh-o"></i></button>
+                    </a>
+                    </td>
+                    <td>
+                    <a href="settings.php">
+                        <button class="btn btn-xl" style="font-size:40px;">No <i class="fa fa-fw fa-2x fa-smile-o"></i></button>
+                    </a>
+                    </td>
+                </tr>   
+            </table>                
         </div>
         <!-- /#page-wrapper -->
 

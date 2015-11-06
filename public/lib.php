@@ -88,6 +88,60 @@ function obtener_datos_from_db($username){
     }
 }
 
+function obtener_datos_producto_from_db($id){
+    // Conexion a la base de datos
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM productos WHERE id='$id'");
+ 
+    $numrows=mysql_num_rows($query);
+
+    if($numrows!=0){
+        while($row=mysql_fetch_assoc($query)){
+            $dbnombre=$row['nombre'];
+        }    
+
+        return array(
+                "productname" => $dbnombre                
+               );
+    } else {
+        return array(
+                "productname" => "NO encotrado"                
+               );
+    }
+}
+
+function es_producto_de_usuario($id,$username){
+    // Conexion a la base de datos
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM productos WHERE id='$id'");
+
+    $numrows=mysql_num_rows($query);
+
+    if($numrows!=0){
+        while($row=mysql_fetch_assoc($query)){
+            $dbusername=$row['vendedor'];
+        }
+        if($dbusername==$username) return true;
+        else return false;
+    } else return false;
+}
+
 function cambiar_fullname($fullname, $newfullname, $username){
     $server="localhost";
     $database = "campusclash";
@@ -374,6 +428,7 @@ function generar_productos_ordenados(){
             //EStilo
             $class1 = "col-md-4 col-sm-6 portfolio-item";
             $style = "  height: 500px;";
+            $style2 = "height: 300px;";
             $href1 = "#portfolioModal$id";
             $class2 = "portfolio-link";
             $modal = "modal";
@@ -401,7 +456,9 @@ function generar_productos_ordenados(){
                                                 <i class='$class5'></i>
                                             </div>
                                         </div>
-                                        <img src='$src1' class='$class6' alt=$vacio>
+                                        <div style='$style2'> 
+                                            <img src='$src1' class='$class6' alt='$vacio'>
+                                        </div>
                                     </a>
                                     <div class='$class7' >
                                         <h4 class='$class8'>$precio monedas</h4>
@@ -458,7 +515,8 @@ function generar_productos_de_usuario($username){
             
             //EStilo
             $class1 = "col-md-4 col-sm-6 portfolio-item";
-            $style = "  height: 500px;";
+            $style = "height: 500px; color:white;";
+            $style2 = "height: 300px;";
             $href1 = "#portfolioModal$id";
             $class2 = "portfolio-link";
             $modal = "modal";
@@ -476,17 +534,19 @@ function generar_productos_de_usuario($username){
             $class12 = "glyphicon glyphicon-star-empty";
             $vacio = "";
             $href3 = "modificar_producto.php?id=$id";
+            $style3 = "margin:0px 100px; color:blue";
 
 
             // Lo que se va a mostrar
 
             $resultado .= "     <div class='$class1' style='$style'>
-                                        
-                                    <img src='$src1' class='$class6' alt=$vacio>
+                                    <div style='$style2'> 
+                                        <img src='$src1' class='$class6' alt='$vacio'>
+                                    </div>
                                     
                                     <div class='$class7' >
                                         <h4 class='$class8'>$precio monedas</h4>
-                                        <h4 ><a href='$href2'>$nombre</a></h4>
+                                        <h4 >$nombre</h4>
                                         <p>$description</p>
                                     </div>
                                     <div class='$class9'>
@@ -499,7 +559,9 @@ function generar_productos_de_usuario($username){
                                             <span class='$class12'></span>
                                         </p>
                                     </div>
-                                    <a href='$href3'>Modificar Producto </a>
+                                    <a href='$href3'>
+                                        <button style='$style3'><b>Modificar Producto</b></button>
+                                    </a>
                                 </div>                                
                                 ";
         } 

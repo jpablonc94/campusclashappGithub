@@ -41,6 +41,8 @@ if(isset($_POST["login"])){
                     $_SESSION['session_username']=$dbusername;                   
                     $_SESSION['session_image_loaded_try'] = false;
                     $_SESSION['session_image_loaded'] = "";
+                    $_SESSION['session_upload_product_try'] = false;
+                    $_SESSION['session_upload_message'] = "";
                     
  
                     /* Redirect browser */
