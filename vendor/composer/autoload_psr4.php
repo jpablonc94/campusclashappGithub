@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Rfd\\ImageMagick\\' => array($vendorDir . '/rfd/imagemagick'),
     'Classes\\' => array($baseDir . '/classes'),
     'App\\' => array($baseDir . '/app'),
 );

@@ -1,3 +1,26 @@
+table {
+    width:180%;
+    margin: 30px 140px;
+    font-size: 20px;
+}
+table, th, td {    
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd) {
+    background-color:#fff;
+}
+table#t01 th    {
+    background-color: black;
+    color: white;
+}
+
 #logout-jp {	
 	text-decoration: none;
 	color: hsl(240, 0%, 75%);
@@ -15,17 +38,6 @@
 #usuario-jp {    
     text-decoration: none;
     color: white;
-}
-
-table, th, td {
-    border: 1px none black;
-    border-collapse: collapse;
-    margin: 35px 10px;
-}
-
-th, td {
-    padding: 15px;
-    font-size: 20px;
 }
 
 #centrado-jp {

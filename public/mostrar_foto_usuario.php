@@ -9,21 +9,22 @@ $db_user = 'root';
 mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
 mysql_select_db($database) or die ("error2".mysql_error());
 
-$username = $_SESSION['session_username'];
-
-// Consulta de búsqueda de la imagen.
-$query =mysql_query("SELECT * FROM usertbl WHERE username='".$username."'");
+if ($_GET['id'] > 0)
+{
+	// Consulta de búsqueda de la imagen.
+	$query =mysql_query("SELECT * FROM `usertbl` WHERE `id`={$_GET['id']}");
  
-$numrows=mysql_num_rows($query);
+	$numrows=mysql_num_rows($query);
 
-if($numrows!=0){
-    while($row=mysql_fetch_assoc($query)){
-        $imagen=$row['imagen'];
-        $tipo=$row['tipo_imagen'];
-    }    
-    // Mandamos las cabeceras al navegador indicando el tipo de datos que vamos a enviar.
-    header("Content-type: '$tipo'");
-    // A continuación enviamos el contenido binario de la imagen.
-    echo $imagen;
+	if($numrows!=0){
+    	while($row=mysql_fetch_assoc($query)){
+        	$imagen=$row['imagen'];
+        	$tipo=$row['tipo_imagen'];
+    	}    
+    	// Mandamos las cabeceras al navegador indicando el tipo de datos que vamos a enviar.
+    	header("Content-type: '$tipo'");
+    	// A continuación enviamos el contenido binario de la imagen.
+    	echo $imagen;
+	}
 }
 ?>

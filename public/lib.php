@@ -51,6 +51,7 @@ function obtener_datos_from_db($username){
 
     if($numrows!=0){
         while($row=mysql_fetch_assoc($query)){
+            $dbid=$row['id'];
             $dbusername=$row['username'];
             $dbemail= $row['email'];
             $dbfullname= $row['full_name'];
@@ -63,6 +64,7 @@ function obtener_datos_from_db($username){
         }    
 
         return array(
+                "id" => $dbid,
                 "username" => $dbusername,
                 "email" => $dbemail,
                 "fullname" => $dbfullname,
@@ -75,6 +77,7 @@ function obtener_datos_from_db($username){
                );
     } else {
         return array(
+                "id" => "NO encotrado",
                 "username" => "NO encotrado",
                 "email" => "NO encotrado",
                 "fullname" => "NO encotrado",
@@ -324,7 +327,7 @@ function cambiar_precio($precio, $id){
 }
 
 
-function generar_datos_ordenados($username){
+function generar_ranking_ordenado($username){
     $class = "col-lg-5 col-lg-offset-0";
     $style = "t01";
     $blue = "color:blue;";
@@ -357,24 +360,27 @@ function generar_datos_ordenados($username){
             $dbusername=$row['username'];
             $dbfullname=$row['full_name'];
             $dbpoints=$row['points'];
+            $dbid=$row['id'];
+
+            $href1="profile.php";
+            $style="color:blue; text-decoration: none;";
+            $href2="usuario.php?id=$dbid";
+            $style2="text-decoration: none;";
+
             if($dbusername==$username){
-                $individuo = "  <tr>
+                $resultado .= " 
+                                <tr style='$blue'>                                
                                     <td><b>$n</b></td>
-                                    <td><b>$dbfullname</b></td>
-                                    <td><b>$dbusername</b></td>
-                                    <td><b>$dbpoints</b></td>
+                                    <td><a href='$href1' style='$style'><b>$dbfullname</b></a></td>
+                                    <td><a href='$href1' style='$style'><b>$dbusername</b></a></td>
+                                    <td><b>$dbpoints</b></td>                                    
                                 </tr>";
-                $resultado .= " <tr style='$blue'>
-                                    <td><b>$n</b></td>
-                                    <td><b>$dbfullname</b></td>
-                                    <td><b>$dbusername</b></td>
-                                    <td><b>$dbpoints</b></td>
-                                </tr>";
+                                
             } else {
                 $resultado .= " <tr>
                                     <td>$n</td>
-                                    <td>$dbfullname</td>
-                                    <td>$dbusername</td>
+                                    <td><a href='$href2' style='$style2'>$dbfullname</a></td>
+                                    <td><a href='$href2' style='$style2'>$dbusername</a></td>
                                     <td>$dbpoints</td>
                                 </tr>";
             }            
