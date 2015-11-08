@@ -7,24 +7,19 @@ if(!isset($_SESSION["session_username"])) {
     header("location:index.php");
 } else {   
     $row = obtener_datos_from_db($_SESSION['session_username']);
-     
-    $server="localhost";
-    $database = "campusclash";
-    $db_pass = 'T7tmn892AB3';
-    $db_user = 'root';
-   
-    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
-    mysql_select_db($database) or die ("error2".mysql_error());
 
     if(isset($_GET['id'])){
         if ($_GET['id'] > 0)
         {
             $_SESSION['session_other_user_id'] = $_GET['id'];
-            $consulta = "SELECT * FROM `usertbl` WHERE `id`={$_GET['id']}";
-            $resultado = @mysql_query($consulta) or die(mysql_error());
-            $row2 = mysql_fetch_assoc($resultado);  
         }
     } 
+    $id = $_SESSION['session_other_user_id'];
+    $row2 = obtener_datos_from_db_por_id($id);
+    $picture = $row2['username'];
+    if(empty($row2['imagen'])){
+        $picture = "imagenpordefectocampusclash";
+    }
 
 ?>
 <!DOCTYPE html>
@@ -58,13 +53,13 @@ if(!isset($_SESSION["session_username"])) {
 
                 <div class="row">
                     <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
-                        <img class="img-responsive" src="mostrar_foto_usuario.php?id=<?php echo $row2['id']; ?>" style="margin:0px;">                  
+                        <img class="img-responsive" src="img/perfiles/<?php echo $picture;?>.jpg" style="margin:60px 10px;">                  
                     </div>
                     <div class="col-lg-5 col-lg-offset-0">
                          <table style="width:150%; margin:60px 0px;">
                             <tr>
                                 <td>Nombre y apellidos: </td>
-                                <td><b><?php echo $row2['full_name'];?></b></td>
+                                <td><b><?php echo $row2['fullname'];?></b></td>
                             </tr>
                             <tr>
                                 <td>Nombre de usuario: </td>

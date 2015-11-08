@@ -8,6 +8,11 @@ if(!isset($_SESSION["session_username"])) {
 } else {   
       $row = obtener_datos_from_db($_SESSION['session_username']);
       $id = $row['id'];
+      $username = $row['username'];
+      $picture = $row['username'];
+      if(empty($row['imagen'])){
+        $picture = "imagenpordefectocampusclash";
+      }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -40,7 +45,7 @@ if(!isset($_SESSION["session_username"])) {
                 
                 <div class="row">
                     <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
-                        <img class="img-responsive" src="mostrar_foto_usuario.php?id=<?php echo $id; ?>" style="margin:0px;">                  
+                        <img class="img-responsive" src="img/perfiles/<?php echo $picture;?>.jpg" style="margin:60px 10px;">                  
                     </div>
                     <div class="col-lg-5 col-lg-offset-0">
                          <table style="width:150%; margin:60px 0px;">

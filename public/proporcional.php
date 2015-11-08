@@ -1,9 +1,7 @@
 <?php
-header("Content-type: 'image/jpg'");
+$ruta_imagen = "img/usuarios/jpablonc94.jpg";
 
-$ruta_imagen = "img/miniatura.jpg";
-
-$miniatura_ancho_maximo = 200;
+$miniatura_ancho_maximo = 300;
 $miniatura_alto_maximo = 300;
 
 $info_imagen = getimagesize($ruta_imagen);
@@ -44,9 +42,6 @@ $lienzo = imagecreatetruecolor( $miniatura_ancho, $miniatura_alto );
 $imagen = imagecopyresampled($lienzo, $imagen, 0, 0, 0, 0, $miniatura_ancho, $miniatura_alto, $imagen_ancho, $imagen_alto);
 
 
-imagejpeg($lienzo, "img/miniatura2.jpg", 80);
+imagejpeg($lienzo, "img/miniaturas/username.jpg", 80);
 
-
-    	
-echo $imagen;
 ?>

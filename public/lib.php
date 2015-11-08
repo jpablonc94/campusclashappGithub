@@ -1,5 +1,67 @@
 <?php
- 
+
+function estrechar($username){
+    $ruta_imagen = "img/usuarios/$username.jpg";
+
+    $miniatura_ancho_maximo = 20;
+    $miniatura_alto_maximo = 20;
+    $info_imagen = getimagesize($ruta_imagen);
+    $imagen_ancho = $info_imagen[0];
+    $imagen_alto = $info_imagen[1];
+    $imagen_tipo = $info_imagen['mime'];
+
+
+
+    //MÉTODO ESTRECHAR
+    $lienzo = imagecreatetruecolor( $miniatura_ancho_maximo, $miniatura_alto_maximo );
+
+    switch ( $imagen_tipo ){
+        case "image/jpg":
+        case "image/jpeg":
+            $imagen = imagecreatefromjpeg( $ruta_imagen );
+            break;
+        case "image/png":
+            $imagen = imagecreatefrompng( $ruta_imagen );
+            break;
+        case "image/gif":
+            $imagen = imagecreatefromgif( $ruta_imagen );
+            break;
+    }
+
+    imagecopyresampled($lienzo, $imagen, 0, 0, 0, 0, $miniatura_ancho_maximo, $miniatura_alto_maximo, $imagen_ancho, $imagen_alto);
+
+    imagejpeg($lienzo, "img/miniaturas/$username.jpg", 80);
+
+    //foto de perfil
+    $miniatura_ancho_maximo = 250;
+    $miniatura_alto_maximo = 250;
+    $info_imagen = getimagesize($ruta_imagen);
+    $imagen_ancho = $info_imagen[0];
+    $imagen_alto = $info_imagen[1];
+    $imagen_tipo = $info_imagen['mime'];
+
+
+
+    //MÉTODO ESTRECHAR
+    $lienzo = imagecreatetruecolor( $miniatura_ancho_maximo, $miniatura_alto_maximo );
+
+    switch ( $imagen_tipo ){
+        case "image/jpg":
+        case "image/jpeg":
+            $imagen = imagecreatefromjpeg( $ruta_imagen );
+            break;
+        case "image/png":
+            $imagen = imagecreatefrompng( $ruta_imagen );
+            break;
+        case "image/gif":
+            $imagen = imagecreatefromgif( $ruta_imagen );
+            break;
+    }
+
+    imagecopyresampled($lienzo, $imagen, 0, 0, 0, 0, $miniatura_ancho_maximo, $miniatura_alto_maximo, $imagen_ancho, $imagen_alto);
+
+    imagejpeg($lienzo, "img/perfiles/$username.jpg", 80);
+}
 /**
  * subir_fichero()
  *
@@ -61,6 +123,7 @@ function obtener_datos_from_db($username){
             $dbnivel = $row['nivel'];
             $dbexp = $row['experiencia'];
             $dbnext = $row['next_lvl'];
+            $dbimagen = $row['imagen'];
         }    
 
         return array(
@@ -73,7 +136,8 @@ function obtener_datos_from_db($username){
                 "monedas" => $dbmonedas,
                 "nivel" => $dbnivel,
                 "experiencia" => $dbexp,
-                "next_lvl" => $dbnext
+                "next_lvl" => $dbnext,
+                "imagen" => $dbimagen
                );
     } else {
         return array(
@@ -86,10 +150,72 @@ function obtener_datos_from_db($username){
                 "monedas" => "NO encotrado",
                 "nivel" => "NO encotrado",
                 "experiencia" => "NO encotrado",
-                "next_lvl" => "NO encotrado"
+                "next_lvl" => "NO encotrado",
+                "imagen" => "NO encotrado"
                );
     }
 }
+
+function obtener_datos_from_db_por_id($id){
+    // Conexion a la base de datos
+    $server="localhost";
+    $database = "campusclash";
+    $db_pass = 'T7tmn892AB3';
+    $db_user = 'root';
+   
+    mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
+    mysql_select_db($database) or die ("error2".mysql_error());
+
+    // Consulta de búsqueda de la imagen.
+    $query =mysql_query("SELECT * FROM usertbl WHERE id='".$id."'");
+ 
+    $numrows=mysql_num_rows($query);
+
+    if($numrows!=0){
+        while($row=mysql_fetch_assoc($query)){
+            $dbid=$row['id'];
+            $dbusername=$row['username'];
+            $dbemail= $row['email'];
+            $dbfullname= $row['full_name'];
+            $dbpoints= $row['points'];
+            $dbposition= $row['position'];
+            $dbmonedas = $row['monedas'];
+            $dbnivel = $row['nivel'];
+            $dbexp = $row['experiencia'];
+            $dbnext = $row['next_lvl'];
+            $dbimagen = $row['imagen'];
+        }    
+
+        return array(
+                "id" => $dbid,
+                "username" => $dbusername,
+                "email" => $dbemail,
+                "fullname" => $dbfullname,
+                "points" => $dbpoints,
+                "position" => $dbposition,
+                "monedas" => $dbmonedas,
+                "nivel" => $dbnivel,
+                "experiencia" => $dbexp,
+                "next_lvl" => $dbnext,
+                "imagen" => $dbimagen
+               );
+    } else {
+        return array(
+                "id" => "NO encotrado",
+                "username" => "NO encotrado",
+                "email" => "NO encotrado",
+                "fullname" => "NO encotrado",
+                "points" => "NO encotrado",
+                "position" => "NO encotrado",
+                "monedas" => "NO encotrado",
+                "nivel" => "NO encotrado",
+                "experiencia" => "NO encotrado",
+                "next_lvl" => "NO encotrado",
+                "imagen" => "NO encotrado"
+               );
+    }
+}
+
 
 function obtener_datos_producto_from_db($id){
     // Conexion a la base de datos
@@ -350,10 +476,10 @@ function generar_ranking_ordenado($username){
         $resultado = "  <div class='$class'>
                             <table id='$style'>
                                 <tr>
-                                    <th>Posición</td>
-                                    <th>Nombre y apellidos</td>
-                                    <th>Nombre de usuario</td>
-                                    <th>Puntos</td>
+                                    <th colspan='2'>Posición</th>
+                                    <th>Nombre y apellidos</th>
+                                    <th>Nombre de usuario</th>
+                                    <th>Puntos</th>
                                 </tr>";
 
         while($row=mysql_fetch_assoc($query)){
@@ -366,11 +492,18 @@ function generar_ranking_ordenado($username){
             $style="color:blue; text-decoration: none;";
             $href2="usuario.php?id=$dbid";
             $style2="text-decoration: none;";
+            $class1 = "img-responsive";
+            $src = "img/miniaturas/$dbusername.jpg";
+
+            if(empty($row['imagen'])){
+                $src = "img/miniaturas/imagenpordefectocampusclash.jpg";
+            }
 
             if($dbusername==$username){
                 $resultado .= " 
                                 <tr style='$blue'>                                
-                                    <td><b>$n</b></td>
+                                    <td><b>$n</b></td> 
+                                    <td><img class='$class1' src='$src'></td>                                    
                                     <td><a href='$href1' style='$style'><b>$dbfullname</b></a></td>
                                     <td><a href='$href1' style='$style'><b>$dbusername</b></a></td>
                                     <td><b>$dbpoints</b></td>                                    
@@ -378,7 +511,8 @@ function generar_ranking_ordenado($username){
                                 
             } else {
                 $resultado .= " <tr>
-                                    <td>$n</td>
+                                    <td><b>$n</b></td> 
+                                    <td><img class='$class1' src='$src'></td>   
                                     <td><a href='$href2' style='$style2'>$dbfullname</a></td>
                                     <td><a href='$href2' style='$style2'>$dbusername</a></td>
                                     <td>$dbpoints</td>
