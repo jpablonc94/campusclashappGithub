@@ -29,7 +29,7 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
-                            Ajustes
+                            Ajustes de usuario
                         </h1> 
 
                     </div>

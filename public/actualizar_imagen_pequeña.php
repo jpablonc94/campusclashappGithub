@@ -45,7 +45,11 @@ else
         $data = mysql_escape_string($data);
 
         // Insertamos en la base de datos.
-        $resultado = mysql_query("UPDATE `productos` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `id`= '$id'");
+        if($_SESSION['session_rol']=="vendedor"){
+            $resultado = mysql_query("UPDATE `productos` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `id`= '$id'");
+        } else{
+            $resultado = mysql_query("UPDATE `premios` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `id`= '$id'");
+        }
 
         if ($resultado)
         {
@@ -61,5 +65,9 @@ else
         $_SESSION['session_image_loaded']="Formato de archivo no permitido o excede el tamaño límite de $limite_kb Kbytes.";
     }
 }
-header("location:modificar_producto.php?id=$id");
+if($_SESSION['session_rol']=="vendedor"){
+    header("location:modificar_producto.php?id=$id");
+} else{
+    header("location:modificar_premio.php?id=$id");
+}
 ?>

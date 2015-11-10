@@ -12,7 +12,13 @@ mysql_select_db($database) or die ("error2".mysql_error());
 if ($_GET['id'] > 0)
 {
 	// Consulta de búsqueda de la imagen.
-	$query =mysql_query("SELECT * FROM `usertbl` WHERE `id`={$_GET['id']}");
+    if($_SESSION['session_rol'] == "alumno"){
+        $query =mysql_query("SELECT * FROM `usertbl` WHERE `id`={$_GET['id']}");   
+    } else if($_SESSION['session_rol'] == "profesor"){
+        $query =mysql_query("SELECT * FROM `profesores` WHERE `id`={$_GET['id']}");
+    } else {
+        $query =mysql_query("SELECT * FROM `vendedores` WHERE `id`={$_GET['id']}");
+    }
  
 	$numrows=mysql_num_rows($query);
 

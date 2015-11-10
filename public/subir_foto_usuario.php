@@ -51,9 +51,14 @@ else
     
                 // Escapamos los caracteres para que se puedan almacenar en la base de datos correctamente.
                 $data = mysql_escape_string($data);
- 
-                // Insertamos en la base de datos.
-                $resultado = mysql_query("UPDATE `usertbl` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+
+                if($_SESSION['session_rol']=="alumno"){
+                    $resultado = mysql_query("UPDATE `usertbl` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+                } else if($_SESSION['session_rol']=="profesor"){
+                    $resultado = mysql_query("UPDATE `profesores` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+                } else {
+                    $resultado = mysql_query("UPDATE `vendedores` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+                }
 
                 if ($resultado){
                     if (move_uploaded_file($imagen_temporal, 'img/usuarios' . '/' . $img_file))

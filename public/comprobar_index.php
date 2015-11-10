@@ -20,15 +20,19 @@ if(isset($_POST["login"])){
             mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
             mysql_select_db($database) or die ("error2".mysql_error());
  
-            $query =mysql_query("SELECT * FROM usertbl WHERE email='".$email."' AND password='".$password."'");
+            $query1 =mysql_query("SELECT * FROM usertbl WHERE email='".$email."' AND password='".$password."'");
  
-            $numrows=mysql_num_rows($query);
+            $numrows1=mysql_num_rows($query1);
 
-            if($numrows!=0){
-                while($row=mysql_fetch_assoc($query)){
+            $query2 =mysql_query("SELECT * FROM profesores WHERE email='".$email."' AND password='".$password."'");
+ 
+            $numrows2=mysql_num_rows($query2);
+
+            if($numrows1!=0){
+                while($row=mysql_fetch_assoc($query1)){
                     $dbusername=$row['username'];
-                    $dbpassword=$row['password'];
                     $dbemail=$row['email'];
+                    $dbpassword=$row['password'];
                     $dbfullname=$row['full_name'];
                     $dbpoints=$row['points'];
                 }
@@ -39,15 +43,38 @@ if(isset($_POST["login"])){
                     $_SESSION['session_image_loaded'] = "";
                     $_SESSION['session_upload_product_try'] = false;
                     $_SESSION['session_upload_message'] = "";
-                    
+                    $_SESSION['session_rol'] = "alumno";                    
  
                     /* Redirect browser */
                     header("Location: welcome.php");
                 }
+                $message = "A ocurrido algún error en la base de datos";
 
-            } else { 
+            } else if($numrows2!=0) {
+                while($row=mysql_fetch_assoc($query2)){
+                    $dbusername=$row['username'];
+                    $dbemail=$row['email'];
+                    $dbpassword=$row['password'];
+                    $dbfullname=$row['full_name'];
+                }
+ 
+                if($password == $dbpassword && $email == $dbemail){ 
+                    $_SESSION['session_username']=$dbusername;                   
+                    $_SESSION['session_image_loaded_try'] = false;
+                    $_SESSION['session_image_loaded'] = "";
+                    $_SESSION['session_upload_product_try'] = false;
+                    $_SESSION['session_upload_message'] = "";
+                    $_SESSION['session_rol'] = "profesor";
+ 
+                    /* Redirect browser */
+                    header("Location: welcome.php");
+                }          
+                $message = "A ocurrido algún error en la base de datos";      
+            } else {
                 $message = "Nombre de usuario ó contraseña invalida!";
             }            
+        } else {
+            $message = "El primer campo debe ser uny correo";
         }
     } else {
         $message = "Todos los campos son requeridos!";

@@ -6,16 +6,11 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-    if($_SESSION['session_rol']!="vendedor"){
+    if($_SESSION['session_rol']!="profesor"){
         header("location:welcome.php");
     }
-    if($_SESSION['session_rol']=="alumno"){
-        $row = obtener_datos_from_usertbl($_SESSION['session_username']);
-    } else if($_SESSION['session_rol']=="profesor"){
-        $row = obtener_datos_from_profesores($_SESSION['session_username']);
-    } else {
-        $row = obtener_datos_from_vendedores($_SESSION['session_username']);
-    }    
+    
+    $row = obtener_datos_from_profesores($_SESSION['session_username']);    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,11 +26,19 @@ if(!isset($_SESSION["session_username"])) {
         <?php include 'navbar_usuario.php'; ?>
         <br>
         <section id="portfolio" class="bg-light-gray">
-            <div class="container">            
+            <div class="container">    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header" style="color:white; margin:20px 0px;">
+                            Mis asignaturas
+                        </h1> 
+
+                    </div>
+                </div>        
                 <div class="row">
                     <?php
-                        $producto = generar_productos_de_usuario($row['username']);
-                        echo $producto;
+                        $asignaturas = generar_lista_de_asignaturas($row['moodleid']);
+                        echo $asignaturas;
                     ?>
                 </div>
             </div>

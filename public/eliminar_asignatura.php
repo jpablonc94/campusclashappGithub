@@ -10,12 +10,17 @@ if(!isset($_SESSION["session_username"])) {
         $row = obtener_datos_from_usertbl($_SESSION['session_username']);
     } else if($_SESSION['session_rol']=="profesor"){
         $row = obtener_datos_from_profesores($_SESSION['session_username']);
-        $id = $_SESSION['session_premio_id'];
     } else {
         $row = obtener_datos_from_vendedores($_SESSION['session_username']);
-        $id = $_SESSION['session_producto_id'];
     }
     
+    if(isset($_GET['id'])){
+        if ($_GET['id'] > 0){
+            $_SESSION['session_asignatura_id'] = $_GET['id'];
+        }
+    }
+    $id = $_SESSION['session_asignatura_id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,18 +38,19 @@ if(!isset($_SESSION["session_username"])) {
         <div id="page-wrapper" style="margin: 0px 0px 20px 0px; border: 10px #A5A5A5; border-style: double none double double;">
 
             <div class="container-fluid">
-                <h1>¿Estás seguro de que quiere borrar este producto? </h1>
+                <h1>¿Estás seguro de que quiere borrar esta asignatura? </h1>
+                <h3>Se borrarán todos los premios que haya creado en ella </h3>
             </div>
 
             <table style="width:100%; margin:0px 100px;">
                 <tr>
                     <td>
-                    <a href="delete_product.php">
+                    <a href="delete_asignatura.php">
                         <button class="btn btn-xl" style="font-size:40px;">Si</button>
                     </a>
                     </td>
                     <td>
-                    <a href="modificar_producto.php?id=$id">
+                    <a href="mis_asignaturas.php?id=$id">
                         <button class="btn btn-xl" style="font-size:40px;">No </button>
                     </a>
                     </td>

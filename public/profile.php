@@ -6,7 +6,13 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-      $row = obtener_datos_from_db($_SESSION['session_username']);
+    if($_SESSION['session_rol']=="alumno"){
+        $row = obtener_datos_from_usertbl($_SESSION['session_username']);
+    } else if($_SESSION['session_rol']=="profesor"){
+        $row = obtener_datos_from_profesores($_SESSION['session_username']);
+    } else {
+        $row = obtener_datos_from_vendedores($_SESSION['session_username']);
+    }
       $id = $row['id'];
       $username = $row['username'];
       $picture = $row['username'];
@@ -36,7 +42,15 @@ if(!isset($_SESSION["session_username"])) {
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
                             Perfil de usuario
-                            <b href="" style="text-decoration:none; font-size: 30px; margin: 0px 20px 0px 450px; color:#252570;"> Nivel <?php echo $row['nivel'];?></b>
+                            <b href="" style="text-decoration:none; font-size: 30px; margin: 0px 20px 0px 450px; color:#252570;"> 
+                                <?php
+                                if($_SESSION['session_rol']=="alumno"){
+                                    $nivel = $row['nivel'];
+                                    $mostrar_nivel = "Nivel $nivel"; 
+                                    echo $mostrar_nivel;
+                                }
+                                ?>
+                            </b>
                         </h1> 
 
                     </div>
@@ -61,18 +75,46 @@ if(!isset($_SESSION["session_username"])) {
                                 <td>Email: </td>
                                 <td><b><?php echo $row['email'];?></b></td>
                             </tr>
-                            <tr>
-                                <td>Puntos: </td>
-                                <td><b><?php echo $row['points'];?></b></td>
-                            </tr>
-                            <tr>
-                                <td>Monedas: </td>
-                                <td><b><?php echo $row['monedas'];?></b></td>
-                            </tr>
-                            <tr>
-                                <td>Ptos de experiencia: </td>
-                                <td><b><?php echo $row['experiencia'];?></b></td>
-                            </tr>
+                            <?php 
+                                if($_SESSION['session_rol']=="alumno"){
+                                    $puntos = $row['points'];
+                                    $monedas =  $row['monedas'];
+                                    $experiencia = $row['experiencia'];
+                                    $puntuaciones="
+                                    <tr>
+                                        <td>Puntos: </td>
+                                        <td><b>$puntos</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Monedas: </td>
+                                        <td><b>$monedas</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ptos de experiencia:</td>
+                                        <td><b>$experiencia</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rol: </td>
+                                        <td><b>Alumno</b></td>
+                                    </tr>";
+                                    echo $puntuaciones;
+                                } else if($_SESSION['session_rol']=="profesor"){
+                                    $puntuaciones="
+                                    <tr>
+                                        <td>Rol: </td>
+                                        <td><b>Profesor</b></td>
+                                    </tr>";
+                                    echo $puntuaciones;
+                                } else {
+                                    $puntuaciones="
+                                    <tr>
+                                        <td>Rol: </td>
+                                        <td><b>Vendedor</b></td>
+                                    </tr>";
+                                    echo $puntuaciones;
+                                }
+                            ?>
+                            
                         </table>
                     </div>
                 </div>

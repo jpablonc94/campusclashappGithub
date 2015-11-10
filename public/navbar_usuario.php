@@ -67,16 +67,52 @@
                     </li>
                     <li>
                         <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                    </li> 
-                    <li>
-                        <a href="vendedor.php"><i class="fa fa-fw fa-plus"></i> Nuevo Producto</a>
                     </li>
-                    <li>
-                        <a href="productos.php"><i class="fa fa-fw fa-database"></i> Tus Productos</a>
-                    </li> 
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-shopping-cart"></i> Tus Compras</a>
-                    </li>                 
+                    <?php 
+             
+                                if($_SESSION['session_rol']=="alumno"){
+                                    $href3 = "#";
+                                    $class3 = "fa fa-fw fa-shopping-cart";
+                                    $puntuaciones="
+                                    <li>
+                                        <a href='$href1'><i class=$class1></i> Nuevo Producto</a>
+                                    </li>
+                                    <li>
+                                        <a href='$href2'><i class='$class2'></i> Tus Productos</a>
+                                    </li> 
+                                    <li>
+                                        <a href='$href3'><i class='$class3'></i> Tus Compras</a>
+                                    </li>";
+                                    echo $puntuaciones;
+
+                                } else if($_SESSION['session_rol']=="profesor"){
+                                    $href1 = "mis_asignaturas.php";
+                                    $class1 ="fa fa-fw fa-plus";
+                                    $href2 = "nuevo_premio.php";
+                                    $class2 = "fa fa-fw fa-database";
+                                    $puntuaciones="
+                                    <li>
+                                        <a href='$href1'><i class='$class2'></i> Mis asignaturas</a>
+                                    </li>
+                                    <li>
+                                        <a href='$href2'><i class='$class1'></i> Añadir Premio</a>
+                                    </li>"; 
+                                    echo $puntuaciones;
+                                } else {
+                                    $href1 = "vendedor.php";
+                                    $class1 ="fa fa-fw fa-plus";
+                                    $href2 = "productos.php";
+                                    $class2 = "fa fa-fw fa-database";
+                                    $puntuaciones="
+                                    <li>
+                                        <a href='$href1'><i class=$class1></i> Añadir Producto</a>
+                                    </li>
+                                    <li>
+                                        <a href='$href2'><i class='$class2'></i> Tus Productos</a>
+                                    </li>"; 
+                                    echo $puntuaciones;
+                                }
+                    ?>                  
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

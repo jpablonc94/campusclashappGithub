@@ -15,7 +15,13 @@
          mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
          mysql_select_db($database) or die ("error2".mysql_error());
 
-         $query = mysql_query("DELETE FROM `usertbl` WHERE `username`='$username'");
+        if($_SESSION['session_rol'] == "alumno"){
+            $query = mysql_query("DELETE FROM `usertbl` WHERE `username`='$username'");
+        } else if($_SESSION['session_rol'] == "profesor"){
+            $query = mysql_query("DELETE FROM `profesores` WHERE `username`='$username'");
+        } else {
+            $query = mysql_query("DELETE FROM `vendedores` WHERE `username`='$username'");
+        }
          session_destroy();
          header("Location: index.php");          
        }       

@@ -6,7 +6,13 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) {
  header("location:index.php");
 } else {
-    $row = obtener_datos_from_db($_SESSION['session_username']);
+    if($_SESSION['session_rol']=="alumno"){
+        $row = obtener_datos_from_usertbl($_SESSION['session_username']);
+    } else if($_SESSION['session_rol']=="profesor"){
+        $row = obtener_datos_from_profesores($_SESSION['session_username']);
+    } else {
+        $row = obtener_datos_from_vendedores($_SESSION['session_username']);
+    }
 ?>
 
 <!DOCTYPE html>

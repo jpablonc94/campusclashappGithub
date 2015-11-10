@@ -6,16 +6,12 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-    if($_SESSION['session_rol']!="vendedor"){
+    if($_SESSION['session_rol']!="profesor"){
         header("location:welcome.php");
     }
-    if($_SESSION['session_rol']=="alumno"){
-        $row = obtener_datos_from_usertbl($_SESSION['session_username']);
-    } else if($_SESSION['session_rol']=="profesor"){
-        $row = obtener_datos_from_profesores($_SESSION['session_username']);
-    } else {
-        $row = obtener_datos_from_vendedores($_SESSION['session_username']);
-    }    
+    
+    $row = obtener_datos_from_profesores($_SESSION['session_username']);
+       
     $usuario = $row['username'];
     $message1 = "";
     if($_SESSION['session_upload_product_try']){
@@ -46,7 +42,7 @@ if(!isset($_SESSION["session_username"])) {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
-                            Sube tu producto
+                            Sube tu premio
                         </h1> 
 
                     </div>
@@ -55,11 +51,14 @@ if(!isset($_SESSION["session_username"])) {
                 <!-- /.row --> 
                 <div class="row">
                     <div class="col-lg-12" style="margin:0px;">                        
-                        <form name="cambiarimg" enctype="multipart/form-data" action="registrar_producto.php" method="post" >
-                            <label>Nombre del negocio</label>
-                            <input name="negocio" type="text" class="form-control" placeholder="Nombre de tu negocio" id="negocio" required data-validation-required-message="Por favor, introduzca el nombre de su negocio.">   
+                        <form name="cambiarimg" enctype="multipart/form-data" action="registrar_premio.php" method="post" >
+                            <label>Asignatura</label>
+                            <?php
+                                $resultado = opciones_de_asignaturas($row['moodleid']);
+                                echo $resultado;
+                            ?>  
                             <hr>
-                            <label>Nombre del producto</label>
+                            <label>Nombre del premio</label>
                             <input name="name" type="text" class="form-control" placeholder="Nombre de tu producto" id="name" required data-validation-required-message="Por favor, introduzca el nombre de su producto.">   
                             <hr>       
                             <label>Descripción corta</label>
@@ -79,7 +78,7 @@ if(!isset($_SESSION["session_username"])) {
                             <br>     
                             <input id="username" type="hidden" name="username" value="<?php $usuario;?>">
 
-                            <button name="submit" type="submit" class="btn btn-xl" style="margin:40px 400px;">Subir Producto</button>                 
+                            <button name="submit" type="submit" class="btn btn-xl" style="margin:40px 400px;">Subir Premio</button>                 
                         </form> 
 
                     </div>
