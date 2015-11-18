@@ -12,6 +12,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="css/agency.css" rel="stylesheet">
     <link href="css/clean-blog.min.css" rel="stylesheet">
     <link href="css/landing-page.css" rel="stylesheet">
 

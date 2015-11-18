@@ -38,7 +38,7 @@ if(!isset($_SESSION["session_username"])) {
         <!-- Navigation -->
         <?php include 'navbar_usuario.php'; ?>
         <br>
-        <section id="portfolio" class="bg-light-gray">
+        
             <div class="container">            
                 <div class="row">
                     <div class="col-lg-12"> 
@@ -51,7 +51,7 @@ if(!isset($_SESSION["session_username"])) {
                             </div>
                             ----------
                         </h2>
-                        <hr>
+                        
                     </div>
                 </div>
                 <div class="row">

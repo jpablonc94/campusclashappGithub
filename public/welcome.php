@@ -49,7 +49,7 @@ if(!isset($_SESSION["session_username"])) {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Secciones <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="tienda.php">Tienda</a></li>
-                            <li><a href="#">Tablón de anuncios</a></li>
+                            <li><a href="buscador_asignaturas.php">Asignaturas</a></li>
                             <li><a href="ranking.php">Clasificación</a></li>
                         </ul>
                     </li>
@@ -130,13 +130,13 @@ if(!isset($_SESSION["session_username"])) {
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <a href="">
+                        <a href="buscador_asignaturas.php">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-comment fa-stack-1x fa-inverse"></i>
                         </a>
                     </span>
-                    <h4 class="service-heading">Tablón de anuncios</h4>
-                    <p class="text-muted"> Si quieres encontrar o colgar algún anuncio, este es el lugar!</p>
+                    <h4 class="service-heading">Asignaturas</h4>
+                    <p class="text-muted"> Si quieres encontrar premios dentro de alguna asignatura, este es el lugar!</p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
@@ -349,7 +349,7 @@ if(!isset($_SESSION["session_username"])) {
     <script src="js/cbpAnimatedHeader.js"></script>
 
     <!-- Contact Form JavaScript -->
-    >
+    
     <script src="js/contact_me.js"></script>
 
     <!-- Custom Theme JavaScript -->

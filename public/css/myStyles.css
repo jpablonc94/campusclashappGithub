@@ -20,6 +20,19 @@ table#t01 th    {
     background-color: black;
     color: white;
 }
+    
+.caja
+{
+
+    background-color: #F4F4F4;
+    width: 600px;
+    height: 250px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    margin: 50px 300px;
+    float: left;
+    padding: 1em;
+    position: relative;
+}
 
 #logout-jp {	
 	text-decoration: none;

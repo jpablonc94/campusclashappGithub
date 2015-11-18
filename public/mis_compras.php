@@ -6,11 +6,23 @@ require_once 'lib.php';
 if(!isset($_SESSION["session_username"])) { 
     header("location:index.php");
 } else {   
-    if($_SESSION['session_rol']!="profesor"){
+    if($_SESSION['session_rol']!="alumno"){
         header("location:welcome.php");
     }
-    
-    $row = obtener_datos_from_profesores($_SESSION['session_username']);    
+    if($_SESSION['session_rol']=="alumno"){
+        $row = obtener_datos_from_usertbl($_SESSION['session_username']);
+    } else if($_SESSION['session_rol']=="profesor"){
+        $row = obtener_datos_from_profesores($_SESSION['session_username']);
+    } else {
+        $row = obtener_datos_from_vendedores($_SESSION['session_username']);
+    } 
+
+    if($_SESSION['session_compra_error_message']!="") {
+        $message = $_SESSION['session_compra_error_message'];
+        $_SESSION['session_compra_error_message'] = "";
+    } else {
+        $message = $_SESSION['session_compra_error_message'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,8 +51,9 @@ if(!isset($_SESSION["session_username"])) {
                 </div>        
                 <div class="row">
                     <?php
-                        $asignaturas = generar_lista_de_asignaturas($row['moodleid']);
-                        echo $asignaturas;
+                        echo $message; 
+                        $producto = generar_compras_de_usuario($row['username']);
+                        echo $producto;
                     ?>
                 </div>
             </div>

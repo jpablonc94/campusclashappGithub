@@ -3,13 +3,7 @@ session_start();
 // Conexion a la base de datos
 $_SESSION['session_upload_product_try'] = true;
 
-$server="localhost";
-$database = "campusclash";
-$db_pass = 'T7tmn892AB3';
-$db_user = 'root';
-    
-mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
-mysql_select_db($database) or die ("error2".mysql_error());
+require_once 'connection.php';
  
 // Comprobamos si ha ocurrido un error.
 if (!isset($_FILES["imagen"]) || $_FILES["imagen"]["error"] > 0)
@@ -73,11 +67,11 @@ else
 
         if ($resultado)
         {
-            $_SESSION['session_upload_message']="TODO OK.";
+            $_SESSION['session_upload_message']="Premio creado correctamente, ¿Quieres crear más?";
         }
         else
         {
-            $_SESSION['session_upload_message']="ERROR";
+            $_SESSION['session_upload_message']="ERROR al crear el premio, vuelva a intentarlo en unos minutos";
         }
     }
     else

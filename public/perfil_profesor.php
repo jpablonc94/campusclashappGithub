@@ -23,8 +23,10 @@ if(!isset($_SESSION["session_username"])) {
     $id = $_SESSION['session_other_user_id'];
     
     $row2 = obtener_datos_from_profesores_por_id($id);
+    $id = $row2['id'];
+    $moodleid = $row2['moodleid'];
 
-    $picture = $row2['username'];
+    $picture = "$id$moodleid.jpg";
     if(empty($row2['imagen'])){
         $picture = "imagenpordefectocampusclash";
     }
@@ -52,7 +54,6 @@ if(!isset($_SESSION["session_username"])) {
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
                             Perfil de usuario
-                            <b href="" style="text-decoration:none; font-size: 30px; margin: 0px 20px 0px 450px; color:#252570;"> Nivel <?php echo $row2['nivel'];?></b>
                         </h1> 
 
                     </div>
@@ -60,8 +61,10 @@ if(!isset($_SESSION["session_username"])) {
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
-                        <img class="img-responsive" src="img/perfiles/<?php echo $picture;?>.jpg" style="margin:60px 10px;">                  
+                    <div class="col-lg-4" style="margin:0px 0px 60px 30px;">
+                        <div class="team-member">
+                            <img class="img-responsive img-circle" src="img/perfiles/<?php echo $picture;?>" style="margin:60px 10px;">                  
+                        </div>
                     </div>
                     <div class="col-lg-5 col-lg-offset-0">
                          <table style="width:150%; margin:60px 0px;">

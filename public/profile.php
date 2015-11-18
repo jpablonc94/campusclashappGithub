@@ -8,14 +8,19 @@ if(!isset($_SESSION["session_username"])) {
 } else {   
     if($_SESSION['session_rol']=="alumno"){
         $row = obtener_datos_from_usertbl($_SESSION['session_username']);
+        $id = $row['id'];
+        $moodleid = $row['moodleid'];
     } else if($_SESSION['session_rol']=="profesor"){
         $row = obtener_datos_from_profesores($_SESSION['session_username']);
+        $id = $row['id'];
+        $moodleid = $row['moodleid'];
     } else {
         $row = obtener_datos_from_vendedores($_SESSION['session_username']);
+        $id = $row['id'];
+        $moodleid = '0';
     }
-      $id = $row['id'];
       $username = $row['username'];
-      $picture = $row['username'];
+      $picture = "$id$moodleid.jpg";
       if(empty($row['imagen'])){
         $picture = "imagenpordefectocampusclash";
       }
@@ -42,7 +47,7 @@ if(!isset($_SESSION["session_username"])) {
                     <div class="col-lg-12">
                         <h1 class="page-header" style="margin:20px 0px;">
                             Perfil de usuario
-                            <b href="" style="text-decoration:none; font-size: 30px; margin: 0px 20px 0px 450px; color:#252570;"> 
+                            <b href="" style="text-decoration:none; font-size: 30px; margin: 0px 20px 0px 40px; color:#252570;"> 
                                 <?php
                                 if($_SESSION['session_rol']=="alumno"){
                                     $nivel = $row['nivel'];
@@ -58,8 +63,10 @@ if(!isset($_SESSION["session_username"])) {
                 <!-- /.row -->
                 
                 <div class="row">
-                    <div class="col-lg-3" style="margin:0px 0px 60px 30px;">
-                        <img class="img-responsive" src="img/perfiles/<?php echo $picture;?>.jpg" style="margin:60px 10px;">                  
+                    <div class="col-lg-4" style="margin:0px 0px 60px 30px;">
+                        <div class="team-member">
+                            <img class="img-responsive img-circle" src="img/perfiles/<?php echo $picture;?>" style="margin:60px 10px;">                  
+                        </div>
                     </div>
                     <div class="col-lg-5 col-lg-offset-0">
                          <table style="width:150%; margin:60px 0px;">

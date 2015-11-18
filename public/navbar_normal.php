@@ -1,6 +1,6 @@
+<!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="container">
+        <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -58,56 +58,4 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <br>
-                    <li>
-                        <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
-                    </li>
-                    <li>
-                        <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                    </li>
-                    <?php 
-             
-                                if($_SESSION['session_rol']=="alumno"){
-                                    $href3 = "mis_compras.php";
-                                    $class3 = "fa fa-fw fa-shopping-cart";
-                                    $puntuaciones="
-                                    <li>
-                                        <a href='$href3'><i class='$class3'></i> Tus Compras</a>
-                                    </li>";
-                                    echo $puntuaciones;
-
-                                } else if($_SESSION['session_rol']=="profesor"){
-                                    $href1 = "mis_asignaturas.php";
-                                    $class1 ="fa fa-fw fa-plus";
-                                    $href2 = "nuevo_premio.php";
-                                    $class2 = "fa fa-fw fa-database";
-                                    $puntuaciones="
-                                    <li>
-                                        <a href='$href1'><i class='$class2'></i> Mis asignaturas</a>
-                                    </li>
-                                    <li>
-                                        <a href='$href2'><i class='$class1'></i> Añadir Premio</a>
-                                    </li>"; 
-                                    echo $puntuaciones;
-                                } else {
-                                    $href1 = "vendedor.php";
-                                    $class1 ="fa fa-fw fa-plus";
-                                    $href2 = "productos.php";
-                                    $class2 = "fa fa-fw fa-database";
-                                    $puntuaciones="
-                                    <li>
-                                        <a href='$href1'><i class=$class1></i> Añadir Producto</a>
-                                    </li>
-                                    <li>
-                                        <a href='$href2'><i class='$class2'></i> Tus Productos</a>
-                                    </li>"; 
-                                    echo $puntuaciones;
-                                }
-                    ?>                  
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
+    </nav>

@@ -4,13 +4,7 @@ require_once 'lib.php';
 // Conexion a la base de datos
 $_SESSION['session_image_loaded_try'] = true;
 
-$server="localhost";
-$database = "campusclash";
-$db_pass = 'T7tmn892AB3';
-$db_user = 'root';
-    
-mysql_connect($server, $db_user, $db_pass) or die ("error1".mysql_error());
-mysql_select_db($database) or die ("error2".mysql_error());
+require_once 'connection.php';
  
 // Comprobamos si ha ocurrido un error.
 if (!isset($_FILES["imagen"]) || $_FILES["imagen"]["error"] > 0)
@@ -54,16 +48,30 @@ else
 
                 if($_SESSION['session_rol']=="alumno"){
                     $resultado = mysql_query("UPDATE `usertbl` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+                    $consulta = mysql_query("SELECT * FROM `usertbl` WHERE `username`= '$username'");
+                    $row=mysql_fetch_assoc($consulta);
+                    $id = $row['id'];
+                    $moodle_id = $row['moodle_id'];
                 } else if($_SESSION['session_rol']=="profesor"){
                     $resultado = mysql_query("UPDATE `profesores` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+                    $consulta = mysql_query("SELECT * FROM `profesores` WHERE `username`= '$username'");
+                    $row=mysql_fetch_assoc($consulta);
+                    $id = $row['id'];
+                    $moodle_id = $row['moodle_id'];
                 } else {
                     $resultado = mysql_query("UPDATE `vendedores` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `username`= '$username'");
+                    $consulta = mysql_query("SELECT * FROM `vendedores` WHERE `username`= '$username'");
+                    $row=mysql_fetch_assoc($consulta);
+                    $id = $row['id'];
+                    $moodle_id = '0';
                 }
+
+
 
                 if ($resultado){
                     if (move_uploaded_file($imagen_temporal, 'img/usuarios' . '/' . $img_file))
                     {
-                        estrechar($username);
+                        estrechar($username, $id, $moodle_id);
                         $_SESSION['session_image_loaded']="La imagen ha sido reemplazada exitosamente.";
                     } else {
                         $_SESSION['session_image_loaded']="Ocurrió algun error en el último if.";

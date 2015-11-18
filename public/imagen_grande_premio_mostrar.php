@@ -1,12 +1,11 @@
 <?php
-session_start();
-
 require_once 'connection.php';
 
 if ($_GET['id'] > 0)
 {
-
-    $consulta = mysql_query("SELECT `imagen`, `tipo_imagen` FROM `productos` WHERE `id`={$_GET['id']}");
+    
+    
+    $consulta = "SELECT `imagen_grande`, `tipo_imagen_grande` FROM `premios` WHERE `id`={$_GET['id']}";    
 
     $numrows=mysql_num_rows($consulta) or die(mysql_error());
     

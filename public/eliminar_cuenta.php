@@ -31,7 +31,7 @@ if(!isset($_SESSION["session_username"])) {
 
             <div class="container-fluid">
                 <h1>¿Estás seguro de que quiere borrar su cuenta de usuario? </h1>
-                <h2>Perderá todos sus puntos y regalos....</h2> 
+                <h2>Se borrarán todos los datos asociados a su cuenta dentro de CampusClash</h2> 
             </div>
 
             <table style="width:100%; margin:0px;">
