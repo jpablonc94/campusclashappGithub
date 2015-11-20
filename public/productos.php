@@ -30,8 +30,19 @@ if(!isset($_SESSION["session_username"])) {
         <!-- Navigation -->
         <?php include 'navbar_usuario.php'; ?>
         <br>
-        <section id="portfolio" class="bg-light-gray">
-            <div class="container">            
+        <div id="page-wrapper" style="margin: 0px 0px 0px 0px; border: 10px #A5A5A5; border-style: double none double double;">
+
+        
+            <div class="container-fluid">    
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>
+                            Mis productos
+                        </h1> 
+
+                    </div>
+                </div>
+                <hr>        
                 <div class="row">
                     <?php
                         $producto = generar_productos_de_usuario($row['username']);

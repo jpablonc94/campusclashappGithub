@@ -22,7 +22,7 @@ if(!isset($_SESSION["session_username"])) {
       $username = $row['username'];
       $picture = "$id$moodleid.jpg";
       if(empty($row['imagen'])){
-        $picture = "imagenpordefectocampusclash";
+        $picture = "imagenpordefectocampusclash.jpg";
       }
 ?>
 <!DOCTYPE html>

@@ -929,7 +929,7 @@ function generar_productos_de_usuario($username){
     $query =mysql_query("SELECT * FROM `productos` WHERE `vendedor`='$username'");
 
     $numrows=mysql_num_rows($query);
-    $resultado = "No hay productos";
+    $resultado = "<br><br><h4>No has subido productos aún</h4>";
     if($numrows!=0){
         $resultado = "";
         $contador = 1;
@@ -947,8 +947,8 @@ function generar_productos_de_usuario($username){
             
             //EStilo
             $class1 = "col-md-4 col-sm-6 portfolio-item";
-            $style = "height: 500px; color:white;";
-            $style2 = "height: 300px;";
+            $style = "height: 500px; color:black; border: 2px solid;";
+            $style2 = "height: 250px; margin: 20px 0px 0px 0px;";
             $href1 = "#portfolioModal$id";
             $class2 = "portfolio-link";
             $modal = "modal";
@@ -966,7 +966,7 @@ function generar_productos_de_usuario($username){
             $class12 = "glyphicon glyphicon-star-empty";
             $vacio = "";
             $href3 = "modificar_producto.php?id=$id";
-            $style3 = "margin:0px 100px; color:blue";
+            $style3 = "margin:0px 100px 20px 100px; color:blue";
 
 
             // Lo que se va a mostrar
@@ -1499,7 +1499,8 @@ function generar_compras_de_usuario($username){
                     <td><b>Nombre del premio</b></td>
                     <td><b>Precio pagado</b></td>
                     <td><b>Fecha de compra</b></td>
-                    <td>    </td>
+                    <td><b>Canjeado?</b></td>
+                    <td>   </td>
                 </tr>
         ";
         while($row=mysql_fetch_assoc($query)){
@@ -1507,11 +1508,13 @@ function generar_compras_de_usuario($username){
             $nombre_premio = $row['nombre_premio'];
             $precio = $row['precio'];
             $timecreated = $row['timecreated'];
+            $canjeado = $row['canjeado'];
 
             //Estilo 
             $href1 = "comprar_premio.php?id=$id";
             $style2 = "font-size: 16px;";
             $style3 = "margin:0px 0px; color:blue;";
+            $style4 = "color:green;";
 
 
             $resultado .= "
@@ -1520,8 +1523,19 @@ function generar_compras_de_usuario($username){
                         <a href='$href1'><td>$nombre_premio</td></a>
                         <td>$precio</td>
                         <td>$timecreated</td>
-                    </tr>
+                   
             ";
+            if ($canjeado){
+                $resultado .= "
+                       <td style='$style4'>Canjeado</td>                        
+                     </tr>
+                ";
+            } else {
+                $resultado .= "
+                       <td>En espera</td>                        
+                     </tr>
+                ";
+            }
             $n++;
         }
         $resultado .= "</table>"; 

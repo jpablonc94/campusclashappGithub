@@ -67,7 +67,7 @@ else
 
         if ($resultado)
         {
-            $_SESSION['session_upload_message']="TODO OK.";
+            $_SESSION['session_upload_message']="Producto registrado correctamente.";
         }
         else
         {

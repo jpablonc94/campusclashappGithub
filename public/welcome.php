@@ -276,11 +276,13 @@ if(!isset($_SESSION["session_username"])) {
             <br>
             <div class="row">
                 <div class="col-lg-12">
-                    <form name="sentMessage" id="contactForm" action="welcome.php">
+                    <form name="sentMessage" id="contactForm" action="contact_me.php" method="post">
                         <div class="row">
                             <div class="col-md-8" style="margin: 10px 0px 10px 200px;">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <input type="hidden" name="email" id="email" value="<?php echo $row['email']; ?>"> 
+                                    <input type="hidden" name="fullname" id="fullname" value="<?php echo $row['fullname']; ?>"> 
+                                    <textarea class="form-control" placeholder="Your Message *" name="message" id="message" required data-validation-required-message="Please enter a message."></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>

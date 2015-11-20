@@ -28,6 +28,7 @@ if(!isset($_SESSION["session_username"])) {
             $imagen = $row2['imagen'];
 
             $mostrar_imagen = "imagen_premio_mostrar.php?id=$id";
+            $mostrar_imagen_grande = "imagen_grande_premio_mostrar.php?id=$id";
             $mostrar_asignatura = "premios.php?id=$course_id";
 
             $row3 = obtener_datos_asignatura_from_db($course_id);
@@ -74,10 +75,10 @@ if(!isset($_SESSION["session_username"])) {
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('imagen_grande_premio_mostrar.php?id=$id')">
+    <header class="intro-header" style="background-image: url('<?php echo $mostrar_imagen_grande; ?>')">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="background: black; opacity: 0.8; filter:  alpha(opacity=80);">
                     <div class="page-heading">
                         <h1><?php echo $nombre; ?></h1>
                         <hr class="small">
@@ -168,11 +169,8 @@ if(!isset($_SESSION["session_username"])) {
                                 <input type="hidden" name="saldo" id="saldo" value="<?php echo $saldo; ?>">
                                 <input type="hidden" name="monedas" id="monedas" value="<?php echo $monedas; ?>">
 
-                                <button name="submit" type="submit" class="btn btn-xl" style="margin:40px 400px;">Canjear Premio</button>                 
-                            </form> 
-                       
-                    
-                            
+                                <button name="submit" type="submit" class="btn btn-xl" style="margin:40px 320px;">Canjear Premio</button>                 
+                            </form>                      
 
                         </div>
                     </div>

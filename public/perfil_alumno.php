@@ -28,7 +28,7 @@ if(!isset($_SESSION["session_username"])) {
 
     $picture = "$id$moodleid.jpg";
     if(empty($row2['imagen'])){
-        $picture = "imagenpordefectocampusclash";
+        $picture = "imagenpordefectocampusclash.jpg";
     }
 
 ?>

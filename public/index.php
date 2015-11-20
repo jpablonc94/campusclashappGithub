@@ -69,6 +69,9 @@ include 'comprobar_index.php';
                         <a class="page-scroll" href="#login">Log In</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#registro">Regístrate</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>                          
                     <!-- </div> -->
@@ -143,40 +146,90 @@ include 'comprobar_index.php';
                     </form>
                     </div>
                 </div>
-                <a href="#contact" class="row btn btn-circle page-scroll" style="margin:0px;">
+                <a href="#registro" class="row btn btn-circle page-scroll" style="margin:0px;">
                     <i class="fa fa-angle-double-down animated" style="color:black;"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
+       <!-- Registration Section -->
+    <section id="registro" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact</h2>
-                <p>Si quieres saber más sobre CampusClash, no dudes en enviar un email a la siguiente dirección:</p>
-                <p><a href="mailto:feedback@startbootstrap.com">juan.pablo.nc@campusclash.com</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                    <li>
-                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-                    </li>
-                </ul>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <h2 style="color:white">REGISTRATE COMO COMERCIANTE</h2>
+                    <p style="color:red; margin:10px;"><?php echo "$message2"; ?> </p>   
+                    <form name="login" id="contactForm" action="index.php" method="post">
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Nombre y Apellidos</label>
+                                <input name="fullname" type="text" id="fullname" class="form-control" placeholder="Nombre y Apellido" required data-validation-required-message="Please enter your fullname.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Username</label>
+                                <input name="username" type="text" id="username" class="form-control" placeholder="Username" required data-validation-required-message="Please enter your username.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>                         
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Email</label>
+                                <input name="email" type="email" id="email" class="form-control" placeholder="Email" required data-validation-required-message="Please enter your email address.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Password</label>
+                                <input <input name="password" type="password" id="password" class="form-control" placeholder="Password" required data-validation-required-message="Please enter your password.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Repite Password</label>
+                                <input <input name="password2" type="password" id="password2" class="form-control" placeholder="Repite Password" required data-validation-required-message="Please enter your password.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>  
+                        <br>                 
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <button type="submit" name="registro" class="btn btn-default">Registrarse</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>     
+        </div>
+        <br>
+        <a href="#contact" class="row btn btn-circle page-scroll" style="margin:0px;">
+            <i class="fa fa-angle-double-down animated" style="color:white;"></i>
+        </a>
+    </section>
+
+    <!-- Contact Section -->
+        <!-- Login Section -->
+    <section id="contact" class="content-section text-center">
+        <div class="login-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="color:black">
+                        <h2>Contact</h2>
+                        <p>Si quieres saber más sobre CampusClash, no dudes en enviar un email a la siguiente dirección:</p>
+                        <p><a href="mailto:feedback@startbootstrap.com">juan.pablo.nc@campusclash.com</a></p> 
+                    </div>
+                </div> 
             </div>
         </div>
     </section>
-
+                               
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p style="float:left">Copyright &copy; CampusClash</p>
+            <p style="float:left; color:black;">Copyright &copy; CampusClash</p>
         </div>
     </footer>
 

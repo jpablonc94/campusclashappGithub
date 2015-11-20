@@ -33,7 +33,7 @@ if(!isset($_SESSION["session_username"])) {
     <?php include 'navbar_normal.php'; ?>
 
     <!-- Header -->
-    <header class="intro-header" style="background-image: url('img/contact-bg.jpg'); margin: 0px;">
+    <header class="intro-header" style="background-image: url('img/intro-bg.jpg'); margin: 0px;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
