@@ -61,6 +61,39 @@ function estrechar($username, $id, $moodle_id){
 
     imagejpeg($lienzo, "img/perfiles/$id$moodle_id.jpg", 80);
 }
+
+function estrechar_producto($id){
+    $ruta_imagen = "img/productos/$id.jpg";
+
+    $miniatura_ancho_maximo = 400;
+    $miniatura_alto_maximo = 289;
+    $info_imagen = getimagesize($ruta_imagen);
+    $imagen_ancho = $info_imagen[0];
+    $imagen_alto = $info_imagen[1];
+    $imagen_tipo = $info_imagen['mime'];
+
+
+    //MÉTODO ESTRECHAR
+    $lienzo = imagecreatetruecolor( $miniatura_ancho_maximo, $miniatura_alto_maximo );
+
+    switch ( $imagen_tipo ){
+        case "image/jpg":
+        case "image/jpeg":
+            $imagen = imagecreatefromjpeg( $ruta_imagen );
+            break;
+        case "image/png":
+            $imagen = imagecreatefrompng( $ruta_imagen );
+            break;
+        case "image/gif":
+            $imagen = imagecreatefromgif( $ruta_imagen );
+            break;
+    }
+
+    imagecopyresampled($lienzo, $imagen, 0, 0, 0, 0, $miniatura_ancho_maximo, $miniatura_alto_maximo, $imagen_ancho, $imagen_alto);
+
+    imagejpeg($lienzo, "img/productos/$id.jpg", 80);
+}
+
 /**
  * subir_fichero()
  *
@@ -873,7 +906,7 @@ function generar_productos_ordenados(){
             $class3 = "portfolio-hover";
             $class4 = "portfolio-hover-content";
             $class5 = "fa fa-plus fa-3x";
-            $src1 = "imagen_mostrar.php?id=$id";
+            $src1 = "img/productos/$id.jpg";
             $class6 = "img-responsive";
             $class8 = "pull-right points-jp";
             $href2 = "#";
@@ -955,7 +988,7 @@ function generar_productos_de_usuario($username){
             $class3 = "portfolio-hover";
             $class4 = "portfolio-hover-content";
             $class5 = "fa fa-plus fa-3x";
-            $src1 = "imagen_mostrar.php?id=$id";
+            $src1 = "img/productos/$id.jpg";
             $class6 = "img-responsive";
             $class7 = "portfolio-caption";
             $class8 = "pull-right points-jp";

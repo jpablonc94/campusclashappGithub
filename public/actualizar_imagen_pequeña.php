@@ -1,9 +1,9 @@
 <?php
 session_start();
+require_once 'lib.php';
 // Conexion a la base de datos
 $_SESSION['session_image_loaded_try'] = true;
 
-$id = $_SESSION['session_producto_id'];
 
 require_once 'connection.php';
  
@@ -40,14 +40,27 @@ else
 
         // Insertamos en la base de datos.
         if($_SESSION['session_rol']=="vendedor"){
+            $id = $_SESSION['session_producto_id'];
             $resultado = mysql_query("UPDATE `productos` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `id`= '$id'");
+            $img_file = "$id.jpg";        
         } else{
+            $id = $_SESSION['session_premio_id'];
             $resultado = mysql_query("UPDATE `premios` SET `imagen`= '$data',`tipo_imagen`= '$tipo' WHERE `id`= '$id'");
+            $img_file = "$id.jpg"; 
         }
 
         if ($resultado)
         {
-            $_SESSION['session_image_loaded']="La imagen ha sido reemplazada exitosamente.";
+            if($_SESSION['session_rol']=="vendedor"){
+                if (move_uploaded_file($imagen_temporal, 'img/productos' . '/' . $img_file)){
+                        estrechar_producto($id);
+                        $_SESSION['session_image_message']="Imagen actualizada correctamente.";
+                } else {
+                    $_SESSION['session_image_message']="Producto registrado correctamente aunque ha habido un problema al subir la imagen.";
+                }
+            } else {
+                $_SESSION['session_image_loaded']="La imagen ha sido reemplazada exitosamente.";
+            }
         }
         else
         {

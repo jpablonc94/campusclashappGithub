@@ -72,7 +72,7 @@ if(!isset($_SESSION["session_username"])) {
                             <input type="number" name="precio" min="1" max="1000" class="form-control" placeholder="Precio en monedas" id="precio" required data-validation-required-message="Por favor, introduzca precio en monedas de su producto.">
                             <hr> 
                             <label>Imagen pequeña</label>
-                            <input id="imagen" type="file" name="imagen">
+                            <input id="imagen" type="file" name="imagen" required data-validation-required-message="Por favor, introduzca una imagen de su producto.">
                             <hr> 
                             <label>Imagen grande</label>
                             <input id="imagen_grande" type="file" name="imagen_grande">

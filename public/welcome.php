@@ -148,11 +148,12 @@ if(!isset($_SESSION["session_username"])) {
                     <h4 class="service-heading">Clasificación</h4>
                     <p class="text-muted"> En este apartado podrás ver tu posición con respecto al resto de estudiantes! </p>
                 </div>
+                <a href="#about" class="btn btn-circle page-scroll">
+                    <i class="fa fa-angle-double-down animated" style="color:black"></i>
+                </a>
             </div>
-            <a href="#about" class="row btn btn-circle page-scroll">
-                <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
-            </a>
         </div>
+        
     </section>
 
     
@@ -174,21 +175,22 @@ if(!isset($_SESSION["session_username"])) {
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-4 col-sm-6" style="margin:0px 0px 0px 80px;">
+                <div class="col-lg-5 col-sm-6" style="margin:0px 0px 0px 80px;">
                     <hr id="about-1" class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Qué es CampusClash?</h2>
-                    <p class="lead">La empresa pretende hacer el día a día del Aula Virtual, más interactivo. Motivando a los alumnos a participar y hacer un correcto uso de la plataforma Moodle</p>
-                    <p class="lead">Si estás en esta página es porque ya te has registrado en el aula virtual. Como habrás podido observar, en el bloque CampusClash dentro de tus asignaturas, se te ha asignado una puntuación. Esta puntuación irá incrementando conforme participes en las distintas tareas dentro del aula. Dichas tareas serán entregables, prácticas, tests, foros...</p>
+                    <p class="lead" style="text-align:justify;">La empresa pretende hacer el día a día del Aula Virtual, más interactivo. Motivando a los alumnos a participar y hacer un correcto uso de la plataforma Moodle</p>
+                    <p class="lead" style="text-align:justify;">Si estás en esta página es porque ya te has registrado en el aula virtual. Como habrás podido observar, en el bloque CampusClash dentro de tus asignaturas, se te ha asignado una puntuación. Esta puntuación irá incrementando conforme participes en las distintas tareas dentro del aula. Dichas tareas serán entregables, prácticas, tests, foros...</p>
                 </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" style="margin:250px 0px 0px 0px;">
+                <div class="col-lg-4 col-lg-offset-1 col-sm-4">
+                    <img class="img-responsive" src="img/phones.png" style="margin:150px 0px 0px 0px;">
                 </div>
             </div>
-            <a href="#about-2" class="row btn btn-circle page-scroll">
-                         <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
-            </a>
+            
         </div>
+        <a href="#about-2" class="btn btn-circle page-scroll centrado-circulos-jp">
+                <i class="fa fa-angle-double-down animated" style="color:black;"></i>
+        </a>
         <!-- /.container -->
     </div>
 
@@ -203,12 +205,12 @@ if(!isset($_SESSION["session_username"])) {
                     <h2 class="section-heading">Qué hacer con esos puntos?</h2>
                     <p class="lead">El objetivo principal de esta página es que el alumno pueda canjear los puntos obtenidos en el aula virtual por premios, como pueden ser descuentos y ofertas exclusivas.</p>
                 </div>
-                <div class="col-lg-4 col-sm-pull-6  col-sm-6">
+                <div class="col-lg-4 col-sm-pull-5  col-sm-4">
                     <img class="img-responsive" src="img/dog.png" style="margin:80px 0px 0px 100px;">
                 </div>
             </div>
-            <a href="#about-3" class="row btn btn-circle page-scroll">
-                         <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
+            <a href="#about-3" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                <i class="fa fa-angle-double-down animated" style="color:black;"></i>
             </a>
         </div>
         <!-- /.container -->
@@ -226,12 +228,12 @@ if(!isset($_SESSION["session_username"])) {
                     <p class="lead">Mi nombre es Juan Pablo Navarro Castillo y soy estudiante de Teleco (ETSIT) en la Universidad Politécnica de Cartagena.</p>
                     <p class="lead">Actualmente trabajo como becario para Telefónica y como alumno interno dentro del Departamento de Electrónica, Tecnología de Computadores y Proyectos de mi escuela.</p>
                 </div>
-                <div class="col-lg-4 col-lg-offset-2 col-sm-6">
+                <div class="col-lg-4 col-lg-offset-2 col-sm-4">
                     <img class="img-responsive" src="img/yo3.png" style="margin:10px 0px 0px 50px;">
                 </div>
             </div>
-            <a href="#about-4" class="row btn btn-circle page-scroll">
-                         <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
+            <a href="#about-4" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                         <i class="fa fa-angle-double-down animated" style="color:black;"></i>
             </a>
         </div>
         <!-- /.container -->
@@ -249,12 +251,12 @@ if(!isset($_SESSION["session_username"])) {
                     <h2 class="section-heading">Talentum Startup</h2>
                     <p class="lead">Este proyecto ha sido llevado cabo gracias a la <a href="http://www.talentumstartups.com/" style="color:blue;text-decoration:none;">Red de Cátedras Talentum</a>, de la compañía Telefónica. Una iniciativa que promueve el espiritu emprendedor entre los estudiantes que quieren desarrollar una empresa propia.</p>
                 </div>
-                <div class="col-lg-6 col-sm-pull-6  col-sm-6">
+                <div class="col-lg-6 col-sm-pull-6  col-sm-4">
                     <img class="img-responsive" src="img/talentum.png" style="margin:30px 0px 0px 20px;">
                 </div>
             </div>
-            <a href="#contact" class="row btn btn-circle page-scroll">
-                <i class="fa fa-angle-double-down animated centrado-circulos-jp"></i>
+            <a href="#contact" class="row btn btn-circle page-scroll centrado-circulos-jp">
+                <i class="fa fa-angle-double-down animated" style="color:black;"></i>
             </a>
         </div>
         <!-- /.container -->
@@ -302,7 +304,7 @@ if(!isset($_SESSION["session_username"])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright">Copyright &copy; Your Website 2014</span>
+                    <span class="copyright">Copyright &copy; CampusClash</span>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
