@@ -59,7 +59,12 @@ else
                     $_SESSION['session_image_message']="Producto registrado correctamente aunque ha habido un problema al subir la imagen.";
                 }
             } else {
-                $_SESSION['session_image_loaded']="La imagen ha sido reemplazada exitosamente.";
+                if (move_uploaded_file($imagen_temporal, 'img/premios' . '/' . $img_file)){
+                        estrechar_premio($id);
+                        $_SESSION['session_image_message']="Imagen actualizada correctamente.";
+                } else {
+                    $_SESSION['session_image_message']="Premio registrado correctamente aunque ha habido un problema al subir la imagen.";
+                }
             }
         }
         else
